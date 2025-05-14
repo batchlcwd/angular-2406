@@ -2,17 +2,19 @@ import { Component } from '@angular/core';
 import { Task } from '../../model/tasks';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { CardComponent } from '../card/card.component';
+import { SearchComponent } from '../search/search.component';
 
 @Component({
   selector: 'app-home',
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, CardComponent, SearchComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css',
 })
-export class HomeComponent 
-{
-  inputText: string = '';
+export class HomeComponent {
   title = 'All Tasks is here...';
+  inputText: string = '';
+
   tasks: Task[] = [
     {
       id: 1,
@@ -51,6 +53,8 @@ export class HomeComponent
     },
   ];
 
+  allTasks: Task[] = [...this.tasks];
+
   addTask() {
     //task is hardcoded
     const newTask: Task = {
@@ -64,7 +68,18 @@ export class HomeComponent
     this.tasks.push(newTask);
   }
 
-  searchTask() {
-    this.inputText = 'searching.....task...';
+  userSearchSomething(inputText: string) {
+    console.log('user search something: ');
+    this.inputText = inputText;
+    console.log('inputText: ', this.inputText);
+
+    if (this.inputText.trim() === '') {
+      this.tasks = [...this.allTasks];
+      return;
+    }
+
+    this.tasks = this.tasks.filter((task) =>
+      task.title.toLowerCase().includes(this.inputText.toLowerCase())
+    );
   }
 }

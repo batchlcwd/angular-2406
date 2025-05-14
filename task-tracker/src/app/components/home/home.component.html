@@ -2,60 +2,17 @@
   <h2 class="text-2xl font-bold text-gray-800 mb-6">{{ title }}</h2>
 
   <!-- search button -->
-
-  <div class="w-full mx-auto py-6">
-    <div class="flex w-full">
-      <input
-        [(ngModel)]="inputText"
-        type="text"
-        placeholder="Search tasks..."
-        class="flex-grow px-4 py-2 border border-gray-300 rounded-l-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-      />
-      <button
-        (click)="searchTask()"
-        type="submit"
-        class="px-6 py-2 bg-gray-600 text-white font-semibold rounded-r-md hover:bg-gray-700 transition duration-300"
-      >
-        Search
-      </button>
-    </div>
-    {{ inputText }}
-  </div>
-
+  <seach-component
+    [buttonText]="'Search'"
+    (searchButtonClick)="userSearchSomething($event)"
+  ></seach-component>
   <!-- end of search button -->
 
   <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
     <!-- Task Card -->
     <!-- starting single task -->
-    <div
-      *ngFor="let task of tasks"
-      class="rounded-lg shadow-md overflow-hidden"
-      [ngClass]="{
-        'bg-green-200': task.isCompleted,
-        'bg-red-200': !task.isCompleted
-      }"
-    >
-      <img
-        [src]="task.imageUrl"
-        [alt]="task.title"
-        class="w-full h-40 object-cover"
-      />
-      <div class="p-4">
-        <h3 class="text-lg font-semibold text-gray-800">{{ task.title }}</h3>
-        <p class="text-sm text-gray-600 mt-2">
-          {{ task.description }}
-        </p>
-        <button
-          *ngIf="!task.isCompleted"
-          [ngClass]="{
-            'bg-red-500': !task.isCompleted
-          }"
-          class="mt-4 inline-block text-white text-sm px-4 py-2 rounded hover:bg-green-600 transition duration-300"
-        >
-          Mark as Completed
-        </button>
-      </div>
-    </div>
+
+    <task-card *ngFor="let task of tasks" [task]="task"></task-card>
 
     <!-- end single task -->
   </div>
@@ -69,3 +26,5 @@
     </button>
   </div>
 </section>
+
+<!-- end of task card -->
