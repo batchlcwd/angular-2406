@@ -4,10 +4,17 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { CardComponent } from '../card/card.component';
 import { SearchComponent } from '../search/search.component';
+import { AddTaskComponentComponent } from '../add-task-component/add-task-component.component';
 
 @Component({
   selector: 'app-home',
-  imports: [CommonModule, FormsModule, CardComponent, SearchComponent],
+  imports: [
+    CommonModule,
+    FormsModule,
+    CardComponent,
+    SearchComponent,
+    AddTaskComponentComponent,
+  ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css',
 })
@@ -81,5 +88,11 @@ export class HomeComponent {
     this.tasks = this.tasks.filter((task) =>
       task.title.toLowerCase().includes(this.inputText.toLowerCase())
     );
+  }
+
+  addTaskFromComp($event: Task) {
+    this.allTasks.push($event);
+    this.tasks.push($event);
+    alert('Task added successfully');
   }
 }

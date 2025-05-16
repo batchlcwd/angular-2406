@@ -1,0 +1,110 @@
+<div class="shadow-md p-10 border border-gray-300 rounded bg-white">
+  <h1 class="text-center text-3xl font-semibold text-gray-700">Add Task</h1>
+  <form novalidate #taskForm="ngForm" (ngSubmit)="formSubmit(taskForm)">
+    <!-- task title -->
+    <div class="mb-3">
+      <label for="">Task Title</label>
+      <input
+        ngModel
+        required
+        minlength="5"
+        #title="ngModel"
+        name="title"
+        type="text"
+        placeholder="Enter your text..."
+        class="w-full mt-2 px-4 py-3 rounded border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 shadow-sm transition duration-300"
+      />
+
+      <div *ngIf="title.invalid && title.touched">
+        <p class="text-red-500 p-2" *ngIf="title.errors?.['required']">
+          Title is required !!
+        </p>
+        <p class="text-red-500 p-2" *ngIf="title.errors?.['minlength']">
+          Title must be at least 5 characters long.
+        </p>
+      </div>
+    </div>
+
+    <!-- #End task title -->
+
+    <!-- task description -->
+
+    <div class="mb-3">
+      <label for="">Task Description</label>
+      <!-- Description Textarea -->
+      <textarea
+        required
+        maxlength="200"
+        ngModel
+        name="description"
+        #description="ngModel"
+        placeholder="Enter description..."
+        rows="4"
+        class="w-full mt-2 px-4 py-3 rounded border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 shadow-sm transition duration-300 resize-none"
+      ></textarea>
+
+      <div *ngIf="description.invalid && description.touched">
+        <p class="text-red-500 p-2" *ngIf="description.errors?.['required']">
+          Description is required !!
+        </p>
+        <p class="text-red-500 p-2" *ngIf="description.errors?.['maxlength']">
+          Description cannot exceed 200 characters.
+        </p>
+      </div>
+    </div>
+
+    <!-- #END task description -->
+
+    <!-- is completed -->
+
+    <div class="flex items-center space-x-2 mb-3">
+      <input
+        ngModel
+        name="isCompleted"
+        id="isCompleted"
+        type="checkbox"
+        class="w-5 h-5 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 focus:ring-2"
+      />
+      <label for="isCompleted" class="text-gray-700 text-sm font-medium">
+        Is Completed or not?
+      </label>
+    </div>
+
+    <!-- #END is completed -->
+
+    <!-- image url -->
+
+    <div class="mb-3">
+      <label for="">Image Url</label>
+      <!-- Image url field -->
+      <input
+        ngModel
+        name="imageUrl"
+        type="text"
+        placeholder="Enter your text..."
+        class="w-full mt-2 px-4 py-3 rounded border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 shadow-sm transition duration-300"
+      />
+    </div>
+
+    <!-- #END image url -->
+
+    <div class="flex justify-center space-x-4 mt-4">
+      <!-- Add Task Button -->
+      <button
+        [disabled]="taskForm.invalid"
+        type="submit"
+        class="px-6 py-2 bg-blue-600 text-white rounded-full hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400 transition duration-300"
+      >
+        Add Task
+      </button>
+
+      <!-- Clear Form Button -->
+      <button
+        type="button"
+        class="px-6 py-2 bg-gray-200 text-gray-800 rounded-full hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-300 transition duration-300"
+      >
+        Clear Form
+      </button>
+    </div>
+  </form>
+</div>
