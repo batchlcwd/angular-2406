@@ -1,5 +1,13 @@
 import { CommonModule } from '@angular/common';
-import { Component, EventEmitter, Output } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  ElementRef,
+  EventEmitter,
+  OnInit,
+  Output,
+  ViewChild,
+} from '@angular/core';
 import { FormsModule, NgForm } from '@angular/forms';
 import { Task } from '../../model/tasks';
 
@@ -9,8 +17,14 @@ import { Task } from '../../model/tasks';
   templateUrl: './add-task-component.component.html',
   styleUrl: './add-task-component.component.css',
 })
-export class AddTaskComponentComponent {
+export class AddTaskComponentComponent implements OnInit, AfterViewInit {
   @Output() taskAddedEvent = new EventEmitter<Task>();
+  @ViewChild('titleField') titleRef!: ElementRef;
+
+  ngOnInit(): void {}
+  ngAfterViewInit(): void {
+    this.titleRef.nativeElement.focus();
+  }
 
   formSubmit(form: NgForm) {
     console.log('form submited ');

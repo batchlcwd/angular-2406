@@ -1,3 +1,6 @@
 <app-header> </app-header>
 <router-outlet></router-outlet>
-<app-footer> </app-footer>
+<button class="bg-red-500 px-3 py-2 rounded" (click)="toggleFooter()">
+  Toggle Footer
+</button>
+<app-footer *ngIf="showFooter" [title]="'App Task Tracker'"> </app-footer>
