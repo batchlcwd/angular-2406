@@ -3,3 +3,45 @@
 </div>
 
 <router-outlet></router-outlet>
+<button mat-button>Like</button>
+<button mat-raised-button>Comment</button>
+<button mat-stroked-button>Share</button>
+<button
+  mat-icon-button
+  aria-label="Example icon button with a vertical three dot icon"
+>
+  <mat-icon>more_vert</mat-icon>
+</button>
+<button mat-fab aria-label="Example icon button with a delete icon">
+  <mat-icon>delete</mat-icon>
+</button>
+
+<mat-form-field class="example-full-width">
+  <mat-label>Favorite food</mat-label>
+  <input matInput placeholder="Ex. Pizza" value="Suraj" />
+</mat-form-field>
+
+<hr />
+
+<mat-form-field>
+  <mat-label>Meeting time</mat-label>
+  <input
+    matInput
+    [matTimepicker]="timepicker"
+    [(ngModel)]="value"
+    [ngModelOptions]="{ updateOn: 'blur' }"
+  />
+  <mat-timepicker #timepicker />
+  <mat-timepicker-toggle [for]="timepicker" matSuffix />
+</mat-form-field>
+
+<mat-form-field>
+  <mat-label>Meeting date</mat-label>
+  <input matInput [matDatepicker]="datepicker" [(ngModel)]="value" />
+  <mat-datepicker #datepicker />
+  <mat-datepicker-toggle [for]="datepicker" matSuffix />
+</mat-form-field>
+
+<p>Value: {{ value }}</p>
+
+<app-card></app-card>
