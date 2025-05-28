@@ -1,0 +1,10 @@
+<div class="p-10 w-1/2 mx-auto">
+  <h1>Welcome to My Angular App!</h1>
+  <p>This is a simple Angular application.</p>
+  <button (click)="getData()" mat-raised-button>Get Data</button>
+  <div *ngIf="user">
+    <h2>Data from API:</h2>
+    <h2>user id {{ user.userId }}</h2>
+    <h2>todo title {{ user.title }}</h2>
+  </div>
+</div>

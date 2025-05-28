@@ -1,0 +1,20 @@
+{
+    "name": "Shashi",
+    "address": "123 Main St, Springfield, USA",
+    "phone": "+1-234-567-8900",
+    "email": "shashi@example.com",
+    "friends":["John", "Jane", "Doe"],
+    "hobbies": ["Reading", "Traveling", "Cooking"],
+    "birthdate": "1990-01-01",
+    "favoriteLaptop":{
+        "name":"asus rog 13",
+        "price": 150000,
+        "specs": {
+            "processor": "Intel i7",
+            "ram": "16GB",
+            "storage": "512GB SSD",
+            "graphics": "NVIDIA RTX 3060"
+        }
+    }
+
+}
