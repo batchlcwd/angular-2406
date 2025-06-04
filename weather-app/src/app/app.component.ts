@@ -3,10 +3,11 @@ import { RouterOutlet } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
 import { HttpClient } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
+import { CurrentComponent } from './components/current/current.component';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, MatButtonModule, CommonModule],
+  imports: [RouterOutlet, MatButtonModule, CommonModule, CurrentComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 })
@@ -14,6 +15,8 @@ export class AppComponent {
   title = 'weather-app';
 
   user!: any;
+
+  imageUrl = '/assets/bg_app.jpg';
 
   constructor(private http: HttpClient) {}
 
