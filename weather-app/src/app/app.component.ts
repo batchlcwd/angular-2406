@@ -4,10 +4,11 @@ import { MatButtonModule } from '@angular/material/button';
 import { HttpClient } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { CurrentComponent } from './components/current/current.component';
+import { ForcastComponent } from "./components/forcast/forcast.component";
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, MatButtonModule, CommonModule, CurrentComponent],
+  imports: [RouterOutlet, MatButtonModule, CommonModule, CurrentComponent, ForcastComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 })

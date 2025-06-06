@@ -36,7 +36,8 @@ export class CurrentComponent {
     this.getData();
   }
 
-  getData() {
+  getData() 
+  {
     this.weatherService.getCurrentWeather(this.selectedCity).subscribe({
       next: (data) => {
         console.log(data);
