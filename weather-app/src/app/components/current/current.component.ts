@@ -7,6 +7,8 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { FormsModule } from '@angular/forms';
 import { ToastService, AngularToastifyModule } from 'angular-toastify';
+import { HighlightDirective } from '../../directives/highlight.directive';
+import { TooltipDirective } from '../../directives/tooltip.directive';
 
 @Component({
   selector: 'app-current',
@@ -18,6 +20,8 @@ import { ToastService, AngularToastifyModule } from 'angular-toastify';
     MatButtonModule,
     FormsModule,
     AngularToastifyModule,
+    HighlightDirective,
+    TooltipDirective
   ],
   templateUrl: './current.component.html',
   styleUrl: './current.component.css',
@@ -36,8 +40,7 @@ export class CurrentComponent {
     this.getData();
   }
 
-  getData() 
-  {
+  getData() {
     this.weatherService.getCurrentWeather(this.selectedCity).subscribe({
       next: (data) => {
         console.log(data);

@@ -12,7 +12,7 @@ import {
   withInterceptors,
 } from '@angular/common/http';
 import { ToastService } from 'angular-toastify';
-import { AuthInterceptor } from './interceptors/AuthInterceptors';
+
 import { catchError, of, throwError } from 'rxjs';
 
 export const appConfig: ApplicationConfig = {

@@ -17,16 +17,32 @@ import {
 } from 'rxjs';
 import { WeatherService } from '../../services/weather.service';
 import { FormControl } from '@angular/forms';
+import { HighlightDirective } from '../../directives/highlight.directive';
+import { MaskTextPipe } from '../../pipes/mask-text.pipe';
 
 @Component({
   selector: 'app-forcast',
-  imports: [CommonModule],
+  imports: [CommonModule, HighlightDirective, MaskTextPipe],
   templateUrl: './forcast.component.html',
   styleUrl: './forcast.component.css',
   standalone: true,
 })
 export class ForcastComponent implements OnInit {
   searchControl = new FormControl('');
+
+  // variables for pip examples"
+
+  today = new Date();
+  companyName = 'substring technologies';
+  price = 100;
+  obj = {
+    name: 'shashi',
+    role: 'admin',
+  };
+
+  brandName = 'LCWD';
+
+  cardNumber = '123456789';
 
   constructor(
     private httpClient: HttpClient,
