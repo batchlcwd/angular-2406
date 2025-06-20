@@ -1,0 +1,18 @@
+<header class="sticky top-0 z-30 flex items-center justify-between p-4 bg-indigo-50 border-b shadow">
+  <!-- Mobile hamburger menu -->
+  <button class="md:hidden" (click)="sidebarToggle.emit()" aria-label="Toggle sidebar">
+    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+    </svg>
+  </button>
+
+  <!-- Title -->
+  <h1 class="text-xl font-bold">Dashboards</h1>
+
+  <!-- Right side -->
+  <div class="flex items-center gap-4 bg-gray-400 rounded-full px-2 py-1">
+    <input type="text" placeholder="Search..." class="hidden sm:block px-3 py-1 border text-sm rounded-full ml-1" />
+    <p class="font-extralight font-sans">Admin</p>
+    <div class="w-9 h-9 rounded-full bg-gray-300 flex items-center justify-center text-sm cursor-pointer">👤</div>
+  </div>
+</header>

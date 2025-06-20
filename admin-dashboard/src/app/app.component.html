@@ -1,0 +1,34 @@
+<!-- <app-header></app-header>
+<div>
+  <app-sidebar></app-sidebar>
+</div>
+
+<div >
+  <router-outlet></router-outlet>
+</div> -->
+
+
+<div class="flex h-screen overflow-hidden">
+  <!-- Overlay sidebar for small screens -->
+  <div
+    class="fixed inset-0 bg-black bg-opacity-50 z-40 md:hidden"
+    *ngIf="isSidebarOpen"
+    (click)="toggleSidebar()"
+  ></div>
+
+  <!-- Sidebar -->
+  <app-sidebar
+    [isOpen]="isSidebarOpen"
+    class="fixed z-50 inset-y-0 left-0 w-64 bg-white transform transition-transform duration-300 ease-in-out md:relative md:translate-x-0"
+    [class.-translate-x-full]="!isSidebarOpen"
+  ></app-sidebar>
+
+  <!-- Main content -->
+  <div class="flex-1 flex flex-col md:ml-0">
+    <app-header (sidebarToggle)="toggleSidebar()"></app-header>
+
+    <main class="flex-1 overflow-y-auto p-4 bg-gray-100">
+      <router-outlet></router-outlet>
+    </main>
+  </div>
+</div>
