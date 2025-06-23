@@ -1,0 +1,32 @@
+<div class="p-2 px-4">
+  <h1 class="text-3xl font-bold">All todos are here...</h1>
+  @for(todo of todoSignal();track todo){
+
+  <div class="border shadow border-gray-400 rounded-xl p-2 my-2">
+    <h1 class="text-2xl font-semibold">{{ todo.title }}</h1>
+    <p>{{ todo.content }}</p>
+    <div class="flex flex-wrap">
+      @for(image of todo.images; track image){
+      <img [src]="image" class="w-64 h-auto m-2 rounded" alt="" />
+      }
+    </div>
+
+    <div>
+      <span
+        class="py-2 font-bold"
+        [ngClass]="{
+          'text-green-500': todo.isCompleted,
+          'text-red-500': !todo.isCompleted
+        }"
+      >
+        {{ todo.isCompleted ? "Completed" : "Not Completed" }}</span
+      >
+
+      <div class="py-4 flex justify-center">
+        <button class="bg-red-500 text-white px-3 py-2 rounded">Remove</button>
+      </div>
+    </div>
+  </div>
+
+  }
+</div>
