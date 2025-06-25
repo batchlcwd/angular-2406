@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Todo, TodoService } from '../../services/todo.service';
 import { signal } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-list-todos',
   standalone: false,
@@ -12,7 +13,7 @@ export class ListTodosComponent {
 
   // todos:Todo[]=[]
 
-  constructor(private todoService: TodoService) {
+  constructor(private todoService: TodoService, private tost: ToastrService) {
     todoService.getTodos().subscribe({
       next: (response) => {
         console.log(response);
@@ -22,5 +23,18 @@ export class ListTodosComponent {
         console.log(error);
       },
     });
+  }
+
+  deleteTodo(todoId: string | undefined) {
+    if (todoId) {
+      this.todoService.removeTodo(todoId).subscribe({
+        next: (response) => {
+          this.tost.success('Deleted');
+        },
+        error: (error) => {
+          this.tost.error('Error in deleting');
+        },
+      });
+    }
   }
 }

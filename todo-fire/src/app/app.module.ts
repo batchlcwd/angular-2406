@@ -7,6 +7,13 @@ import { provideFirebaseApp, initializeApp } from '@angular/fire/app';
 import { provideFirestore, getFirestore } from '@angular/fire/firestore';
 import { ListTodosComponent } from './components/list-todos/list-todos.component';
 import { AddTodoComponent } from './components/add-todo/add-todo.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
+import { AboutComponent } from './components/about/about.component';
+import { ContactComponent } from './components/contact/contact.component';
+import { HomeComponent } from './components/home/home.component';
+import { FormsModule } from '@angular/forms';
+import { ToastrModule } from 'ngx-toastr';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 const firebaseConfig = {
   apiKey: 'AIzaSyBAodM4Agk56MWzFaE4Ap1ZbDmawDBs3Nw',
@@ -18,8 +25,22 @@ const firebaseConfig = {
 };
 
 @NgModule({
-  declarations: [AppComponent, ListTodosComponent, AddTodoComponent],
-  imports: [BrowserModule, AppRoutingModule],
+  declarations: [
+    AppComponent,
+    ListTodosComponent,
+    AddTodoComponent,
+    NavbarComponent,
+    AboutComponent,
+    ContactComponent,
+    HomeComponent,
+  ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    FormsModule,
+    ToastrModule.forRoot(),
+  ],
   providers: [
     provideFirebaseApp(() => initializeApp(firebaseConfig)),
     provideFirestore(() => getFirestore()),
