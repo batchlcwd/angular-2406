@@ -11,18 +11,12 @@ import { ToastrService } from 'ngx-toastr';
 export class ListTodosComponent {
   todoSignal = signal<Todo[]>([]);
 
+  completedFilterValue = false;
+
   // todos:Todo[]=[]
 
   constructor(private todoService: TodoService, private tost: ToastrService) {
-    todoService.getTodos().subscribe({
-      next: (response) => {
-        console.log(response);
-        this.todoSignal.set(response);
-      },
-      error: (error) => {
-        console.log(error);
-      },
-    });
+    this.getTodos();
   }
 
   deleteTodo(todoId: string | undefined) {
@@ -36,5 +30,39 @@ export class ListTodosComponent {
         },
       });
     }
+  }
+
+  filterByCompleted() {
+    console.log(this.completedFilterValue);
+
+    if (typeof this.completedFilterValue === 'string') {
+      this.getTodos();
+      return;
+    }
+
+    this.todoService
+      .getTodoByCompletedStatus(this.completedFilterValue)
+      .subscribe({
+        next: (response) => {
+          console.log(response);
+          this.todoSignal.set(response);
+        },
+        error: (error) => {
+          console.log(error);
+          this.tost.error('Error in fetching todos');
+        },
+      });
+  }
+
+  private getTodos() {
+    this.todoService.getTodos().subscribe({
+      next: (response) => {
+        console.log(response);
+        this.todoSignal.set(response);
+      },
+      error: (error) => {
+        console.log(error);
+      },
+    });
   }
 }

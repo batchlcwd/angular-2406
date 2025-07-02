@@ -8,7 +8,9 @@ import {
   doc,
   DocumentSnapshot,
   getDoc,
+  query,
   updateDoc,
+  where,
 } from 'firebase/firestore';
 import { Observable } from 'rxjs';
 
@@ -70,6 +72,38 @@ export class TodoService {
         isCompleted: todo.isCompleted,
       })
     );
+  }
+
+  getTodoByCompletedStatus(status: boolean): Observable<Todo[]> {
+    const todoCollectionRef = collection(this.firesotre, 'todos');
+    const q = query(todoCollectionRef, where('isCompleted', '==', status));
+    return collectionData(q, {
+      idField: 'id',
+    }) as Observable<Todo[]>;
+  }
+
+  getTodoByCompletedTitle(title: string): Observable<Todo[]> {
+    const todoCollectionRef = collection(this.firesotre, 'todos');
+    const q = query(todoCollectionRef, where('title', '==', title));
+    return collectionData(q, {
+      idField: 'id',
+    }) as Observable<Todo[]>;
+  }
+
+  getByTitleAndCompletedStatus(
+    title: string,
+    status: boolean
+  ): Observable<Todo[]> {
+    const todoCollectionRef = collection(this.firesotre, 'todos');
+    const q = query(
+      todoCollectionRef,
+      where('title', '==', title),
+      where('isCompleted', '==', status)
+    );
+
+    return collectionData(q, {
+      idField: 'id',
+    }) as Observable<Todo[]>;
   }
 }
 
