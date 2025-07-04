@@ -1,0 +1,85 @@
+<div
+  class="min-h-screen bg-gray-100 flex flex-col items-center justify-center px-4"
+>
+  <!-- Hero Section -->
+  <div class="max-w-3xl text-center">
+    <h1 class="text-4xl md:text-5xl font-extrabold text-gray-800">
+      Welcome to <span class="text-blue-600">TrainBooker</span>
+    </h1>
+    <p class="mt-4 text-gray-600 text-lg">
+      Your one-stop solution to search, plan and book train journeys across the
+      country.
+    </p>
+
+    <!-- CTA Buttons -->
+    <div class="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
+      <a
+        routerLink="/search"
+        class="bg-blue-600 text-white px-6 py-3 rounded-xl shadow hover:bg-blue-700 transition"
+      >
+        Search Trains
+      </a>
+      <a
+        routerLink="/my-bookings"
+        class="bg-gray-200 text-gray-800 px-6 py-3 rounded-xl shadow hover:bg-gray-300 transition"
+      >
+        View Bookings
+      </a>
+      <a
+        routerLink="/admin/home"
+        class="bg-orange-200 text-gray-800 px-6 py-3 rounded-xl shadow hover:bg-gray-300 transition"
+      >
+        Admin Area
+      </a>
+    </div>
+  </div>
+
+  <!-- Features Section -->
+  <div class="mt-16 max-w-4xl w-full grid md:grid-cols-3 gap-6 text-center">
+    <div class="bg-white p-6 rounded-lg shadow">
+      <svg
+        class="w-10 h-10 mx-auto mb-3 text-blue-500"
+        fill="currentColor"
+        viewBox="0 0 20 20"
+      >
+        <path
+          d="M4 3a1 1 0 00-1 1v11a2 2 0 002 2h10a2 2 0 002-2V4a1 1 0 00-1-1H4zm1 2h10v2H5V5z"
+        />
+      </svg>
+      <h3 class="font-semibold text-lg">Live Train Search</h3>
+      <p class="text-sm text-gray-600">
+        Find trains in real time with live availability and pricing.
+      </p>
+    </div>
+
+    <div class="bg-white p-6 rounded-lg shadow">
+      <svg
+        class="w-10 h-10 mx-auto mb-3 text-green-500"
+        fill="currentColor"
+        viewBox="0 0 20 20"
+      >
+        <path
+          d="M16 3H4a1 1 0 00-1 1v11a1 1 0 001 1h4l2 2 2-2h4a1 1 0 001-1V4a1 1 0 00-1-1z"
+        />
+      </svg>
+      <h3 class="font-semibold text-lg">Easy Booking</h3>
+      <p class="text-sm text-gray-600">
+        Book tickets in just a few steps with secure payment options.
+      </p>
+    </div>
+
+    <div class="bg-white p-6 rounded-lg shadow">
+      <svg
+        class="w-10 h-10 mx-auto mb-3 text-yellow-500"
+        fill="currentColor"
+        viewBox="0 0 20 20"
+      >
+        <path d="M2 5a2 2 0 012-2h12a2 2 0 012 2v5a7 7 0 01-14 0V5z" />
+      </svg>
+      <h3 class="font-semibold text-lg">Manage Bookings</h3>
+      <p class="text-sm text-gray-600">
+        Track, reschedule or cancel your tickets anytime with ease.
+      </p>
+    </div>
+  </div>
+</div>
