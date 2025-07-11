@@ -1,0 +1,82 @@
+<p-card header="Add New Train">
+  <div class="max-w-xl mx-auto p-6 bg-white shadow-md rounded-xl my-10">
+    <h2 class="text-2xl font-semibold mb-4 text-gray-800">
+      Train Details Form
+    </h2>
+
+    <form [formGroup]="trainForm" (ngSubmit)="onSubmit()" class="space-y-4">
+      <!-- Train Number -->
+      <div>
+        <label class="block text-gray-700 font-medium mb-1">Train Number</label>
+        <input
+          placeholder="Enter here"
+          type="text"
+          formControlName="number"
+          class="w-full px-4 py-2 border rounded-md focus:ring focus:ring-blue-200 focus:outline-none"
+        />
+      </div>
+
+      <!-- Train Name -->
+      <div>
+        <label class="block text-gray-700 font-medium mb-1">Train Name</label>
+        <input
+          placeholder="Enter here"
+          type="text"
+          formControlName="name"
+          class="w-full px-4 py-2 border rounded-md focus:ring focus:ring-blue-200 focus:outline-none"
+        />
+      </div>
+
+      <!-- Source Station -->
+      <div>
+        <label class="block text-gray-700 font-medium mb-1"
+          >Source Station</label
+        >
+        <select
+          formControlName="sourceStation"
+          class="w-full px-4 py-2 border rounded-md focus:ring focus:ring-blue-200 focus:outline-none"
+        >
+          <option value="">Select Source</option>
+          <option *ngFor="let station of stations" [ngValue]="station">
+            {{ station.name }}
+          </option>
+        </select>
+      </div>
+
+      <!-- Destination Station -->
+      <div>
+        <label class="block text-gray-700 font-medium mb-1"
+          >Destination Station</label
+        >
+        <select
+          formControlName="destinationStation"
+          class="w-full px-4 py-2 border rounded-md focus:ring focus:ring-blue-200 focus:outline-none"
+        >
+          <option value="">Select Destination</option>
+          <option *ngFor="let station of stations" [ngValue]="station">
+            {{ station.name }}
+          </option>
+        </select>
+      </div>
+
+      <!-- Total Distance -->
+      <div>
+        <label class="block text-gray-700 font-medium mb-1"
+          >Total Distance (km)</label
+        >
+        <input
+          type="number"
+          placeholder="Enter here"
+          formControlName="totalDistance"
+          class="w-full px-4 py-2 border rounded-md focus:ring focus:ring-blue-200 focus:outline-none"
+        />
+      </div>
+
+      <!-- Submit Button -->
+      <div class="pt-4 flex justify-center">
+        <p-button  [routerLink]="'/admin/trains'" size="small" label="Back" severity="secondary"></p-button>
+        <p-button size="small" class="ml-3" label="Submit" type="Submit" severity="success"></p-button>
+      </div>
+    </form>
+  </div>
+</p-card>

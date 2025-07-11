@@ -52,12 +52,12 @@ export class SidemenuComponent implements OnInit {
           {
             label: 'Trains',
             icon: PrimeIcons.MEGAPHONE,
-            routerLink: '/trains',
+            routerLink: '/admin/trains',
           },
           {
             label: 'Stations',
             icon: PrimeIcons.SHOP,
-            routerLink: '/trains',
+            routerLink: '/admin/stations',
           },
           {
             label: 'Routes',

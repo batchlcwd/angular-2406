@@ -12,7 +12,10 @@ import { FooterComponent } from './components/footer/footer.component';
 import { HeaderComponent } from './components/header/header.component';
 
 import { HomePageComponent } from './pages/home-page/home-page.component';
-import { DashboardHomeComponent } from './admin/dashboard-home/dashboard-home.component';
+import { ListTrainsComponent } from './admin/pages/list-trains/list-trains.component';
+import { Badge } from 'primeng/badge';
+import { provideHttpClient } from '@angular/common/http';
+import { AddTrainComponent } from './admin/pages/add-train/add-train.component';
 
 @NgModule({
   declarations: [
@@ -20,10 +23,10 @@ import { DashboardHomeComponent } from './admin/dashboard-home/dashboard-home.co
     FooterComponent,
     HeaderComponent,
     HomePageComponent,
-    DashboardHomeComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, ShareUiModule],
+  imports: [BrowserModule, AppRoutingModule, ShareUiModule, Badge],
   providers: [
+    provideHttpClient(),
     provideAnimationsAsync(),
     providePrimeNG({
       theme: {
