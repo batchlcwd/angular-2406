@@ -9,7 +9,14 @@ import { TrainService } from '../../../services/train.service';
   styleUrl: './list-trains.component.css',
 })
 export class ListTrainsComponent implements OnInit {
+  //for trains list
   trains: Train[] = [];
+
+  //for show/hide modal
+  showUpdateModal = false;
+
+  //for tain to update
+  trainToUpdate!: Train;
 
   constructor(
     private trainService: TrainService // Inject the TrainService to fetch data
@@ -25,5 +32,10 @@ export class ListTrainsComponent implements OnInit {
         console.error('Error fetching trains:', error); // Handle any errors
       },
     });
+  }
+
+  showUpdateModalClicked(train: Train) {
+    this.showUpdateModal = true;
+    this.trainToUpdate = train;
   }
 }

@@ -5,6 +5,10 @@ import { PanelMenuModule } from 'primeng/panelmenu';
 import { DrawerModule } from 'primeng/drawer';
 import { CardModule } from 'primeng/card';
 import { TableModule } from 'primeng/table';
+import { DialogModule } from 'primeng/dialog';
+import { InputTextModule } from 'primeng/inputtext';
+import { FormsModule } from '@angular/forms';
+import { CheckboxModule } from 'primeng/checkbox';
 @NgModule({
   declarations: [],
   imports: [
@@ -14,6 +18,10 @@ import { TableModule } from 'primeng/table';
     DrawerModule,
     CardModule,
     TableModule,
+    DialogModule,
+    InputTextModule,
+    FormsModule,
+    CheckboxModule,
   ],
   exports: [
     ButtonModule,
@@ -21,6 +29,10 @@ import { TableModule } from 'primeng/table';
     DrawerModule,
     CardModule,
     TableModule,
+    DialogModule,
+    InputTextModule,
+    FormsModule,
+    CheckboxModule,
   ], // Exporting CommonModule and ButtonModule for use in other modules
 })
 export class ShareUiModule {}

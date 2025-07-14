@@ -4,6 +4,8 @@ import { AdminComponent } from './admin.component';
 import { DashboardHomeComponent } from '../pages/dashboard-home/dashboard-home.component';
 import { ListTrainsComponent } from '../pages/list-trains/list-trains.component';
 import { AddTrainComponent } from '../pages/add-train/add-train.component';
+import { ListStationsComponent } from '../pages/list-stations/list-stations.component';
+import { AddStationComponent } from '../pages/add-station/add-station.component';
 
 const routes: Routes = [
   {
@@ -24,6 +26,16 @@ const routes: Routes = [
         path: 'add-train',
         component: AddTrainComponent,
         title: 'Add new Train',
+      },
+      {
+        path: 'stations',
+        component: ListStationsComponent,
+        title: 'Stations List',
+      },
+      {
+        path: 'add-station',
+        component: AddStationComponent,
+        title: 'Add New Station',
       },
     ],
   },

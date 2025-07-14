@@ -9,6 +9,8 @@ import { DashboardHomeComponent } from '../pages/dashboard-home/dashboard-home.c
 import { ListTrainsComponent } from '../pages/list-trains/list-trains.component';
 import { AddTrainComponent } from '../pages/add-train/add-train.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { ListStationsComponent } from '../pages/list-stations/list-stations.component';
+import { AddStationComponent } from '../pages/add-station/add-station.component';
 
 @NgModule({
   declarations: [
@@ -17,6 +19,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     DashboardHomeComponent,
     ListTrainsComponent,
     AddTrainComponent,
+    ListStationsComponent,
+    AddStationComponent,
   ],
   imports: [CommonModule, AdminRoutingModule, ShareUiModule,ReactiveFormsModule],
 })
