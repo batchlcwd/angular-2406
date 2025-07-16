@@ -16,6 +16,7 @@ import { ListTrainsComponent } from './admin/pages/list-trains/list-trains.compo
 import { Badge } from 'primeng/badge';
 import { provideHttpClient } from '@angular/common/http';
 import { AddTrainComponent } from './admin/pages/add-train/add-train.component';
+import { ConfirmationService, MessageService } from 'primeng/api';
 
 @NgModule({
   declarations: [
@@ -36,6 +37,8 @@ import { AddTrainComponent } from './admin/pages/add-train/add-train.component';
         },
       },
     }),
+    ConfirmationService,
+    MessageService,
   ],
   bootstrap: [AppComponent],
 })

@@ -9,6 +9,8 @@ import { DialogModule } from 'primeng/dialog';
 import { InputTextModule } from 'primeng/inputtext';
 import { FormsModule } from '@angular/forms';
 import { CheckboxModule } from 'primeng/checkbox';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { ToastModule } from 'primeng/toast';
 @NgModule({
   declarations: [],
   imports: [
@@ -22,6 +24,8 @@ import { CheckboxModule } from 'primeng/checkbox';
     InputTextModule,
     FormsModule,
     CheckboxModule,
+    ConfirmDialogModule,
+    ToastModule,
   ],
   exports: [
     ButtonModule,
@@ -33,6 +37,8 @@ import { CheckboxModule } from 'primeng/checkbox';
     InputTextModule,
     FormsModule,
     CheckboxModule,
+    ConfirmDialogModule,
+    ToastModule,
   ], // Exporting CommonModule and ButtonModule for use in other modules
 })
 export class ShareUiModule {}

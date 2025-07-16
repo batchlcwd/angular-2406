@@ -21,4 +21,9 @@ export class StationService {
       station
     );
   }
+  deleteStation(stationId: number) {
+    return this.httpClient.delete(
+      `${environment.apiUrl}/admin/stations/${stationId}`
+    );
+  }
 }

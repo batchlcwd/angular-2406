@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Station } from '../../../models/station';
 import { FormSubmittedEvent, NgForm } from '@angular/forms';
 import { StationService } from '../../../services/station.service';
+import { ToastMessageService } from '../../../services/toast-message.service';
 
 @Component({
   selector: 'app-add-station',
@@ -19,7 +20,10 @@ export class AddStationComponent {
 
   agree = false;
 
-  constructor(private stationService: StationService) {}
+  constructor(
+    private stationService: StationService,
+    private toastService: ToastMessageService
+  ) {}
 
   submitForm(formEvent: any) {
     formEvent.preventDefault();
@@ -28,7 +32,7 @@ export class AddStationComponent {
       //api call
       this.stationService.addStations(this.station).subscribe({
         next: (response) => {
-          alert('station added');
+          this.toastService.success('Station Added!');
           this.station = {
             code: '',
             name: '',
@@ -38,10 +42,11 @@ export class AddStationComponent {
         },
         error: (error) => {
           console.log(error);
+          this.toastService.error('Error in adding stations');
         },
       });
     } else {
-      console.log('agree the terms');
+      this.toastService.error('Select Agreement ??');
     }
   }
 }
