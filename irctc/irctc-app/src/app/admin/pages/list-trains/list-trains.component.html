@@ -2,14 +2,14 @@
   <p-card header="Trains List" class="rounded-xl mb-4">
     <div class="flex justify-center items-center mb-4">
       <div class="flex w-full justify-end">
-        <p-button
-          severity="success"
-          label="Add Train"
+        <custom-button
+          type="danger"
+          buttonText="Add Train"
           icon="pi pi-plus"
-          class="mb-2"
+          class=""
           size="small"
           [routerLink]="['/admin/add-train']"
-        ></p-button>
+        ></custom-button>
       </div>
     </div>
     <div class="w-full overflow-auto">

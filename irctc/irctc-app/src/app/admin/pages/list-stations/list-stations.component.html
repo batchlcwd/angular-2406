@@ -2,14 +2,11 @@
   <p-card header="Stations List" class="rounded-xl mb-4">
     <div class="flex justify-center items-center mb-4">
       <div class="flex w-full justify-end">
-        <p-button
-          severity="success"
-          label="Add Station"
-          icon="pi pi-plus"
-          class="mb-2"
-          size="small"
+        <custom-button
           [routerLink]="['/admin/add-station']"
-        ></p-button>
+          [type]="'success'"
+          [buttonText]="'Add Station'"
+        />
       </div>
     </div>
     <p-table

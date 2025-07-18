@@ -1,0 +1,49 @@
+<p-card header="Add new Route of Train">
+  <div class="max-w-2xl mx-auto p-6 bg-white rounded-xl border border-gray-200">
+    <h2 class="text-2xl font-bold mb-6 text-gray-800 border-b pb-2">
+      Add Train Route Detail
+    </h2>
+    <form [formGroup]="addRouteForm" (ngSubmit)="onSubmit()">
+      <div>
+        <p-floatlabel>
+          <input
+            formControlName="stationOrder"
+            placeholder="Enter here"
+            class="w-full"
+            id="station_order"
+            type="text"
+            pInputText
+          />
+          <label for="station_order">Station Order</label>
+
+          <div
+            *ngIf="
+              addRouteForm.get('stationOrder')?.touched &&
+              addRouteForm.get('stationOrder')?.invalid
+            "
+          >
+            <small
+              *ngIf="addRouteForm.get('stationOrder')?.errors?.['required']"
+              class="text-red-500"
+              id="station_order_error_help"
+              >Station Order is required.
+            </small>
+            <small
+              *ngIf="addRouteForm.get('stationOrder')?.errors?.['min']"
+              class="text-red-500"
+              id="station_order_error_help"
+              >Min value is > 0.
+            </small>
+          </div>
+
+          <small id="station_order_help"
+            >Enter the route order in which this route comes.</small
+          >
+        </p-floatlabel>
+      </div>
+      <div class="flex justify-center my-2">
+        <p-button type="submit" rounded="true" label="Add"></p-button>
+      </div>
+    </form>
+  </div>
+</p-card>

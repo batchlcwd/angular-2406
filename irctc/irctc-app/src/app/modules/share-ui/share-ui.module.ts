@@ -11,6 +11,8 @@ import { FormsModule } from '@angular/forms';
 import { CheckboxModule } from 'primeng/checkbox';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { ToastModule } from 'primeng/toast';
+import { CustomButton } from '../../components/custom-button.component';
+import { FloatLabel } from 'primeng/floatlabel';
 @NgModule({
   declarations: [],
   imports: [
@@ -26,6 +28,8 @@ import { ToastModule } from 'primeng/toast';
     CheckboxModule,
     ConfirmDialogModule,
     ToastModule,
+    CustomButton,
+    FloatLabel,
   ],
   exports: [
     ButtonModule,
@@ -39,6 +43,8 @@ import { ToastModule } from 'primeng/toast';
     CheckboxModule,
     ConfirmDialogModule,
     ToastModule,
+    CustomButton,
+    FloatLabel,
   ], // Exporting CommonModule and ButtonModule for use in other modules
 })
 export class ShareUiModule {}

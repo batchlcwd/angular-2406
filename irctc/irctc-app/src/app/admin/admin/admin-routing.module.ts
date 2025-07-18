@@ -6,6 +6,8 @@ import { ListTrainsComponent } from '../pages/list-trains/list-trains.component'
 import { AddTrainComponent } from '../pages/add-train/add-train.component';
 import { ListStationsComponent } from '../pages/list-stations/list-stations.component';
 import { AddStationComponent } from '../pages/add-station/add-station.component';
+import { ListRoutesComponent } from '../pages/list-routes/list-routes.component';
+import { AddRouteComponent } from '../pages/add-route/add-route.component';
 
 const routes: Routes = [
   {
@@ -36,6 +38,16 @@ const routes: Routes = [
         path: 'add-station',
         component: AddStationComponent,
         title: 'Add New Station',
+      },
+      {
+        path: 'routes',
+        component: ListRoutesComponent,
+        title: 'Train Routes',
+      },
+      {
+        path: 'add-route',
+        component: AddRouteComponent,
+        title: 'Add Train Route',
       },
     ],
   },

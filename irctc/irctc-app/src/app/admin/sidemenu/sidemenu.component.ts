@@ -62,7 +62,7 @@ export class SidemenuComponent implements OnInit {
           {
             label: 'Routes',
             icon: PrimeIcons.MAP,
-            routerLink: '/routes',
+            routerLink: '/admin/routes',
           },
           {
             label: 'Schedules',

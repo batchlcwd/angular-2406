@@ -11,7 +11,10 @@ import { AddTrainComponent } from '../pages/add-train/add-train.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ListStationsComponent } from '../pages/list-stations/list-stations.component';
 import { AddStationComponent } from '../pages/add-station/add-station.component';
-
+import { AddRouteComponent } from '../pages/add-route/add-route.component';
+import { ListRoutesComponent } from '../pages/list-routes/list-routes.component';
+import { CustomButton } from "../../components/custom-button.component";
+import { Badge } from "primeng/badge";
 @NgModule({
   declarations: [
     AdminComponent,
@@ -21,7 +24,16 @@ import { AddStationComponent } from '../pages/add-station/add-station.component'
     AddTrainComponent,
     ListStationsComponent,
     AddStationComponent,
+    AddRouteComponent,
+    ListRoutesComponent
   ],
-  imports: [CommonModule, AdminRoutingModule, ShareUiModule,ReactiveFormsModule],
+  imports: [
+    CommonModule,
+    AdminRoutingModule,
+    ShareUiModule,
+    ReactiveFormsModule,
+    CustomButton,
+    Badge
+],
 })
 export class AdminModule {}
