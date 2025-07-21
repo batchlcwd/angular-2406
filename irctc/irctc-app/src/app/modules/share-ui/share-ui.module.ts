@@ -13,6 +13,9 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { ToastModule } from 'primeng/toast';
 import { CustomButton } from '../../components/custom-button.component';
 import { FloatLabel } from 'primeng/floatlabel';
+import { SelectModule } from 'primeng/select';
+import { DatePickerModule } from 'primeng/datepicker';
+import { MessageModule } from 'primeng/message';
 @NgModule({
   declarations: [],
   imports: [
@@ -29,7 +32,10 @@ import { FloatLabel } from 'primeng/floatlabel';
     ConfirmDialogModule,
     ToastModule,
     CustomButton,
+    MessageModule,
     FloatLabel,
+    SelectModule,
+    DatePickerModule,
   ],
   exports: [
     ButtonModule,
@@ -45,6 +51,9 @@ import { FloatLabel } from 'primeng/floatlabel';
     ToastModule,
     CustomButton,
     FloatLabel,
+    SelectModule,
+    DatePickerModule,
+    MessageModule,
   ], // Exporting CommonModule and ButtonModule for use in other modules
 })
 export class ShareUiModule {}

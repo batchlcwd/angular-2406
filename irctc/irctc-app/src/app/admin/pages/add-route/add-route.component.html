@@ -1,48 +1,166 @@
-<p-card header="Add new Route of Train">
-  <div class="max-w-2xl mx-auto p-6 bg-white rounded-xl border border-gray-200">
-    <h2 class="text-2xl font-bold mb-6 text-gray-800 border-b pb-2">
-      Add Train Route Detail
+<p-card
+  header="Add New Route of Train"
+  class="shadow-xl rounded-lg border border-gray-200"
+>
+  <div class="max-w-4xl mx-auto px-8 py-10 bg-white rounded-lg">
+    <h2
+      class="text-2xl font-semibold text-gray-800 mb-10 border-b pb-4 flex items-center gap-2"
+    >
+      <i class="pi pi-map-marker text-blue-500"></i>
+      Train Route Entry Form
     </h2>
-    <form [formGroup]="addRouteForm" (ngSubmit)="onSubmit()">
-      <div>
-        <p-floatlabel>
-          <input
-            formControlName="stationOrder"
-            placeholder="Enter here"
-            class="w-full"
-            id="station_order"
-            type="text"
-            pInputText
-          />
-          <label for="station_order">Station Order</label>
 
+    <form [formGroup]="addRouteForm" (ngSubmit)="onSubmit()">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-6">
+        <!-- Station Order -->
+        <div class="w-full">
+          <label
+            for="station_order"
+            class="block text-sm font-medium text-gray-700 mb-1"
+          >
+            <i class="pi pi-sort-numeric-up mr-1 text-blue-500"></i> Station
+            Order
+          </label>
+          <input
+            id="station_order"
+            pInputText
+            class="w-full"
+            formControlName="stationOrder"
+            placeholder="e.g. 1"
+          />
           <div
             *ngIf="
               addRouteForm.get('stationOrder')?.touched &&
               addRouteForm.get('stationOrder')?.invalid
             "
+            class="mt-1"
           >
             <small
               *ngIf="addRouteForm.get('stationOrder')?.errors?.['required']"
               class="text-red-500"
-              id="station_order_error_help"
-              >Station Order is required.
-            </small>
+              >Required.</small
+            >
             <small
               *ngIf="addRouteForm.get('stationOrder')?.errors?.['min']"
               class="text-red-500"
-              id="station_order_error_help"
-              >Min value is > 0.
-            </small>
+              >Must be > 0.</small
+            >
           </div>
+        </div>
 
-          <small id="station_order_help"
-            >Enter the route order in which this route comes.</small
+        <!-- Halt Minutes -->
+        <div class="w-full">
+          <label
+            for="halt_minute"
+            class="block text-sm font-medium text-gray-700 mb-1"
           >
-        </p-floatlabel>
+            <i class="pi pi-clock mr-1 text-blue-500"></i> Halt Minutes
+          </label>
+          <input
+            id="halt_minute"
+            pInputText
+            class="w-full"
+            formControlName="haltMinutes"
+            placeholder="e.g. 10"
+          />
+        </div>
+
+        <!-- Distance -->
+        <div class="w-full">
+          <label
+            for="distance_from_source"
+            class="block text-sm font-medium text-gray-700 mb-1"
+          >
+            <i class="pi pi-compass mr-1 text-blue-500"></i> Distance from
+            Source (km)
+          </label>
+          <input
+            id="distance_from_source"
+            pInputText
+            class="w-full"
+            formControlName="distanceFromSource"
+            placeholder="e.g. 245"
+          />
+        </div>
+
+        <!-- Station -->
+        <div class="w-full">
+          <label class="block text-sm font-medium text-gray-700 mb-1">
+            <i class="pi pi-building mr-1 text-blue-500"></i> Station
+          </label>
+          <p-select
+            [options]="allStations"
+            formControlName="station"
+            optionLabel="name"
+            placeholder="Select Station"
+            class="w-full"
+          ></p-select>
+        </div>
+
+        <!-- Train -->
+        <div class="w-full">
+          <label class="block text-sm font-medium text-gray-700 mb-1">
+            <i class="pi pi-train mr-1 text-blue-500"></i> Train
+          </label>
+          <p-select
+            [options]="allTrains"
+            formControlName="train"
+            optionLabel="name"
+            placeholder="Select Train"
+            class="w-full"
+          ></p-select>
+        </div>
+
+        <!-- Arrival Time -->
+        <div class="w-full">
+          <label
+            for="arrival_time"
+            class="block text-sm font-medium text-gray-700 mb-1"
+          >
+            <i class="pi pi-sign-in mr-1 text-blue-500"></i> Arrival Time
+          </label>
+          <p-datepicker
+            id="arrival_time"
+            formControlName="arrivalTime"
+            [timeOnly]="true"
+            class="w-full"
+          ></p-datepicker>
+        </div>
+
+        <!-- Departure Time -->
+        <div class="w-full">
+          <label
+            for="departure_time"
+            class="block text-sm font-medium text-gray-700 mb-1"
+          >
+            <i class="pi pi-sign-out mr-1 text-blue-500"></i> Departure Time
+          </label>
+          <p-datepicker
+            id="departure_time"
+            formControlName="departureTime"
+            [timeOnly]="true"
+            class="w-full"
+          ></p-datepicker>
+        </div>
       </div>
-      <div class="flex justify-center my-2">
-        <p-button type="submit" rounded="true" label="Add"></p-button>
+
+      <!-- Actions -->
+      <div class="flex justify-center gap-4 mt-12">
+        <p-button
+          label="Back"
+          icon="pi pi-arrow-left"
+          [routerLink]="'/admin/routes'"
+          severity="secondary"
+          rounded
+        ></p-button>
+
+        <p-button
+          label="Add Route"
+          icon="pi pi-check"
+          type="submit"
+          severity="primary"
+          rounded
+        ></p-button>
       </div>
     </form>
   </div>

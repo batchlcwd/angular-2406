@@ -1,10 +1,101 @@
-<p-card header="Train Routes">
-  <div class="flex justify-end">
+<p-card header="Train Routes" class="shadow-lg rounded-lg p-4">
+  <!-- Header Actions -->
+  <div class="flex justify-between items-center mb-4">
+    <h2 class="text-xl font-semibold text-gray-700">Manage Train Routes</h2>
     <custom-button
       [type]="'secondary'"
       [buttonText]="'Add Route'"
       (handClick)="handleClick($event)"
       [routerLink]="'/admin/add-route'"
     ></custom-button>
+  </div>
+
+  <!-- Train Selection -->
+  <div class="flex justify-center my-6">
+    <p-select
+      [options]="trains"
+      optionLabel="name"
+      [lazy]="true"
+      [(ngModel)]="selectedTrain"
+      class="w-full md:w-2/3 lg:w-1/2"
+      (onChange)="handleTrainSelect()"
+      placeholder="Select a Train"
+    />
+  </div>
+
+  <!-- Train Routes Table -->
+  <div *ngIf="trainRoute && trainRoute.length > 0" class="mt-6">
+    <h3 class="text-lg font-medium text-gray-600 mb-2 px-1">
+      Routes for: <span class="text-black">{{ selectedTrain.name }}</span>
+    </h3>
+
+    <p-table
+      size="small"
+      [value]="trainRoute"
+      [tableStyle]="{ 'min-width': '50rem' }"
+      [responsiveLayout]="'scroll'"
+      class="p-datatable-sm p-datatable-striped"
+    >
+      <ng-template pTemplate="header">
+        <tr>
+          <th>Station</th>
+          <th>Code</th>
+          <th pSortableColumn="stationOrder">
+            <div class="flex items-center gap-1">
+              Station Order <p-sortIcon field="stationOrder"></p-sortIcon>
+            </div>
+          </th>
+          <th>Arrival</th>
+          <th>Departure</th>
+          <th>Halt (min)</th>
+          <th>Distance (km)</th>
+          <th>Action</th>
+        </tr>
+      </ng-template>
+
+      <ng-template pTemplate="body" let-route>
+        <tr>
+          <td>{{ route.station.name }}</td>
+          <td>{{ route.station.code }}</td>
+          <td>{{ route.stationOrder }}</td>
+          <td>{{ route.arrivalTime }}</td>
+          <td>{{ route.departureTime }}</td>
+          <td>{{ route.haltMinutes }}</td>
+          <td>{{ route.distanceFromSource }}</td>
+          <td>
+            <p-button
+              icon="pi pi-trash"
+              severity="danger"
+              rounded
+              size="small"
+              (click)="handleDelete()"
+              tooltip="Delete Route"
+              tooltipPosition="top"
+            ></p-button>
+          </td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </div>
+
+  <!-- Info / Error Messages -->
+  <div class="mt-6 text-center">
+    <p-message
+      *ngIf="trainRoute && trainRoute.length <= 0"
+      severity="error"
+      variant="outlined"
+      class="w-full md:w-1/2 mx-auto"
+    >
+      No Route available for this train.
+    </p-message>
+
+    <p-message
+      *ngIf="!trainRoute"
+      severity="info"
+      variant="outlined"
+      class="w-full md:w-1/2 mx-auto"
+    >
+      Please select a train to view routes.
+    </p-message>
   </div>
 </p-card>

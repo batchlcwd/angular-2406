@@ -1,67 +1,101 @@
-<div>
-  <p-card header="Trains List" class="rounded-xl mb-4">
-    <div class="flex justify-center items-center mb-4">
-      <div class="flex w-full justify-end">
-        <custom-button
-          type="danger"
-          buttonText="Add Train"
-          icon="pi pi-plus"
-          class=""
-          size="small"
-          [routerLink]="['/admin/add-train']"
-        ></custom-button>
-      </div>
+<!-- Trains List Section -->
+<div class="px-4">
+  <p-card
+    header="🚆 Trains List"
+    class="rounded-xl shadow-lg border border-gray-200"
+  >
+    <!-- Add Button -->
+    <div class="flex justify-between items-center mb-6">
+      <h2 class="text-lg font-semibold text-gray-700">Manage All Trains</h2>
+      <custom-button
+        type="danger"
+        buttonText="Add Train"
+        icon="pi pi-plus"
+        size="small"
+        [routerLink]="['/admin/add-train']"
+      ></custom-button>
     </div>
-    <div class="w-full overflow-auto">
-      <p-table [size]="'small'" [value]="trains">
-        <ng-template #header>
+
+    <!-- Table -->
+    <div class="w-full overflow-x-auto">
+      <p-table
+        [value]="trains"
+        [size]="'small'"
+        class="p-datatable-striped p-datatable-sm"
+      >
+        <ng-template pTemplate="header">
           <tr>
             <th pSortableColumn="number">
               <div class="flex items-center gap-2">
-                Number
+                <i class="pi pi-tag text-blue-500"></i> Number
                 <p-sortIcon field="number" />
               </div>
             </th>
             <th pSortableColumn="name">
               <div class="flex items-center gap-2">
-                Name
+                <i class="pi pi-book text-green-500"></i> Name
                 <p-sortIcon field="name" />
               </div>
             </th>
-            <th>Source</th>
-            <th>Destination</th>
+            <th>
+              <div class="flex items-center gap-2">
+                <i class="pi pi-arrow-circle-right text-gray-600"></i> Source
+              </div>
+            </th>
+            <th>
+              <div class="flex items-center gap-2">
+                <i class="pi pi-arrow-circle-left text-gray-600"></i>
+                Destination
+              </div>
+            </th>
             <th pSortableColumn="totalDistance">
               <div class="flex items-center gap-2">
-                Total Distance
+                <i class="pi pi-compass text-orange-500"></i> Distance (Km)
                 <p-sortIcon field="totalDistance" />
               </div>
             </th>
-            <th>Actions</th>
+            <th class="text-center">
+              <i class="pi pi-cog text-gray-500"></i> Actions
+            </th>
           </tr>
         </ng-template>
-        <ng-template #body let-train>
+
+        <ng-template pTemplate="body" let-train>
           <tr>
             <td>{{ train.number }}</td>
             <td>{{ train.name }}</td>
             <td>{{ train.sourceStation.name }}</td>
             <td>{{ train.destinationStation.name }}</td>
             <td>{{ train.totalDistance }} Km</td>
-            <td class="flex space-x-2">
-              <p-button icon="pi pi-trash" severity="secondary" rounded />
-              <p-button
-                (click)="showUpdateModalClicked(train)"
-                icon="pi pi-pencil"
-                severity="secondary"
-                rounded
-              />
-              <!-- <p-button icon="pi pi-eye" severity="secondary" rounded /> -->
+            <td>
+              <div class="flex justify-center gap-2">
+                <p-button
+                  icon="pi pi-pencil"
+                  severity="info"
+                  size="small"
+                  rounded
+                  tooltip="Edit"
+                  (click)="showUpdateModalClicked(train)"
+                />
+                <p-button
+                  icon="pi pi-trash"
+                  severity="danger"
+                  size="small"
+                  rounded
+                  tooltip="Delete"
+                />
+              </div>
             </td>
           </tr>
         </ng-template>
-        <ng-template #footer>
+
+        <ng-template pTemplate="footer">
           <tr>
-            <td colspan="6">
-              In total trains are {{ trains ? trains.length : 0 }}
+            <td
+              colspan="6"
+              class="text-right font-medium text-sm text-gray-600"
+            >
+              Total Trains: {{ trains?.length || 0 }}
             </td>
           </tr>
         </ng-template>
@@ -70,31 +104,42 @@
   </p-card>
 </div>
 
-<!--  -->
-<!-- modal content -->
+<!-- Edit Train Modal -->
 <div class="card flex justify-center" *ngIf="trainToUpdate">
   <p-dialog
-    [header]="`Edit Train Detail ${trainToUpdate.number}`"
+    [header]="`✏️ Edit Train: ${trainToUpdate.number}`"
     [modal]="true"
     [(visible)]="showUpdateModal"
-    [style]="{ width: '25rem' }"
+    [style]="{ width: '30rem' }"
+    [breakpoints]="{ '768px': '90vw' }"
   >
-    <span class="p-text-secondary block mb-8">Update your information.</span>
-    <div class="flex items-center gap-4 mb-4">
-      <label for="username" class="font-semibold w-24">Username</label>
-      <input pInputText id="username" class="flex-auto" autocomplete="off" />
+    <span class="p-text-secondary block mb-6">Update train details below.</span>
+
+    <div class="grid grid-cols-1 gap-4">
+      <div class="flex items-center gap-3">
+        <label for="username" class="font-medium w-24 text-gray-700"
+          >Name</label
+        >
+        <input pInputText id="username" class="flex-1" autocomplete="off" />
+      </div>
+      <div class="flex items-center gap-3">
+        <label for="email" class="font-medium w-24 text-gray-700">Email</label>
+        <input pInputText id="email" class="flex-1" autocomplete="off" />
+      </div>
     </div>
-    <div class="flex items-center gap-4 mb-8">
-      <label for="email" class="font-semibold w-24">Email</label>
-      <input pInputText id="email" class="flex-auto" autocomplete="off" />
-    </div>
-    <div class="flex justify-end gap-2">
+
+    <div class="flex justify-end gap-2 mt-6">
       <p-button
         label="Cancel"
         severity="secondary"
+        icon="pi pi-times"
         (click)="showUpdateModal = false"
       />
-      <p-button label="Save" (click)="showUpdateModal = false" />
+      <p-button
+        label="Save"
+        icon="pi pi-check"
+        (click)="showUpdateModal = false"
+      />
     </div>
   </p-dialog>
 </div>
