@@ -13,8 +13,13 @@ import { ListStationsComponent } from '../pages/list-stations/list-stations.comp
 import { AddStationComponent } from '../pages/add-station/add-station.component';
 import { AddRouteComponent } from '../pages/add-route/add-route.component';
 import { ListRoutesComponent } from '../pages/list-routes/list-routes.component';
-import { CustomButton } from "../../components/custom-button.component";
-import { Badge } from "primeng/badge";
+import { CustomButton } from '../../components/custom-button.component';
+import { Badge } from 'primeng/badge';
+import { AddScheduleComponent } from '../pages/add-schedule/add-schedule.component';
+import { ListScheduleComponent } from '../pages/list-schedule/list-schedule.component';
+import { AddCoachComponent } from '../pages/add-coach/add-coach.component';
+import { ListCoachComponent } from '../pages/list-coach/list-coach.component';
+import { ListBookingsComponent } from '../pages/list-bookings/list-bookings.component';
 @NgModule({
   declarations: [
     AdminComponent,
@@ -25,7 +30,12 @@ import { Badge } from "primeng/badge";
     ListStationsComponent,
     AddStationComponent,
     AddRouteComponent,
-    ListRoutesComponent
+    ListRoutesComponent,
+    AddScheduleComponent,
+    ListScheduleComponent,
+    AddCoachComponent,
+    ListCoachComponent,
+    ListBookingsComponent,
   ],
   imports: [
     CommonModule,
@@ -33,7 +43,7 @@ import { Badge } from "primeng/badge";
     ShareUiModule,
     ReactiveFormsModule,
     CustomButton,
-    Badge
-],
+    Badge,
+  ],
 })
 export class AdminModule {}

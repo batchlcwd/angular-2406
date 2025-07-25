@@ -6,9 +6,9 @@ import { Subject } from 'rxjs';
   providedIn: 'root',
 })
 export class ConfirmMessageService {
-  private responseSubject = new Subject<boolean>();
-
   constructor(private ngConfirmation: ConfirmationService) {}
+
+  
 
   show(
     message: string,
@@ -16,6 +16,8 @@ export class ConfirmMessageService {
     acceptButtonText = 'Save',
     icon: string = 'pi pi-exclamation-triangle'
   ) {
+    const responseSubject = new Subject<boolean>();
+
     this.ngConfirmation.confirm({
       message,
       header,
@@ -33,12 +35,20 @@ export class ConfirmMessageService {
         label: acceptButtonText,
         severity: 'danger',
       },
-      accept: () => this.responseSubject.next(true),
-      reject: () => this.responseSubject.next(false),
+      accept: () => {
+        responseSubject.next(true);
+        responseSubject.complete();
+      },
+      reject: () => () => {
+        responseSubject.next(false);
+        responseSubject.complete();
+      },
     });
+
+    return responseSubject.asObservable();
   }
 
-  onConfirm() {
-    return this.responseSubject.asObservable();
-  }
+  // onConfirm() {
+  //   return this.responseSubject.asObservable();
+  // }
 }

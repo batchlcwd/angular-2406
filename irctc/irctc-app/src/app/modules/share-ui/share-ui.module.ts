@@ -16,6 +16,7 @@ import { FloatLabel } from 'primeng/floatlabel';
 import { SelectModule } from 'primeng/select';
 import { DatePickerModule } from 'primeng/datepicker';
 import { MessageModule } from 'primeng/message';
+import { TooltipModule } from 'primeng/tooltip';
 @NgModule({
   declarations: [],
   imports: [
@@ -36,6 +37,7 @@ import { MessageModule } from 'primeng/message';
     FloatLabel,
     SelectModule,
     DatePickerModule,
+    TooltipModule,
   ],
   exports: [
     ButtonModule,
@@ -54,6 +56,7 @@ import { MessageModule } from 'primeng/message';
     SelectModule,
     DatePickerModule,
     MessageModule,
+    TooltipModule,
   ], // Exporting CommonModule and ButtonModule for use in other modules
 })
 export class ShareUiModule {}

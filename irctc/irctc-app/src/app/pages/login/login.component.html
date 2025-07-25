@@ -1,0 +1,62 @@
+<div
+  class="flex items-center justify-center min-h-screen bg-gray-100 dark:bg-gray-900 transition-colors duration-300"
+>
+  <div
+    class="bg-white dark:bg-gray-800 text-gray-800 dark:text-white p-8 rounded-xl shadow-lg w-full max-w-md"
+  >
+    <div class="text-center mb-6">
+      <i class="pi pi-user text-4xl text-blue-500"></i>
+      <h2 class="text-2xl font-semibold mt-2">Welcome Back</h2>
+      <p class="text-sm text-gray-500 dark:text-gray-300">
+        Please sign in to continue
+      </p>
+    </div>
+
+    <!-- Username -->
+    <div class="mb-5">
+      <span class="p-float-label p-input-icon-left w-full">
+        <i class="pi pi-user"></i>
+        <label for="username" class="ml-2">Username</label>
+        <input
+          id="username"
+          type="text"
+          pInputText
+          placeholder="Enter here"
+          [(ngModel)]="username"
+          class="w-full dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+        />
+      </span>
+    </div>
+
+    <!-- Password -->
+    <div class="mb-5">
+      <span class="p-float-label p-input-icon-left w-full">
+        <i class="pi pi-lock"></i>
+        <label for="password" class="ml-2">Password</label>
+        <input
+          id="password"
+          type="password"
+          placeholder="Enter here"
+          pInputText
+          [(ngModel)]="password"
+          class="w-full dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+        />
+      </span>
+    </div>
+
+    <!-- Login Button -->
+    <button
+      pButton
+      label="Login"
+      icon="pi pi-sign-in"
+      class="w-full bg-blue-500 hover:bg-blue-600 text-white border-none"
+      (click)="onLogin()"
+    ></button>
+
+    <!-- Footer -->
+    <div class="text-center text-sm text-gray-500 dark:text-gray-400 mt-4">
+      Don't have an account?
+      <a href="#" class="text-blue-500 hover:underline">Sign up</a>
+    </div>
+  </div>
+</div>

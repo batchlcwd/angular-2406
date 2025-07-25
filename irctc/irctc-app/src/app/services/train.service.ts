@@ -20,4 +20,11 @@ export class TrainService {
       train
     );
   }
+
+  //delete train
+  deleteTrain(number: number) {
+    return this.httpClient.delete(
+      `${environment.apiUrl}/admin/trains/${number}`
+    );
+  }
 }

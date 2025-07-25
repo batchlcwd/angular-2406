@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Train } from '../../../models/train';
 import { TrainService } from '../../../services/train.service';
+import { ToastMessageService } from '../../../services/toast-message.service';
+import { ConfirmMessageService } from '../../../services/confirm-message.service';
 
 @Component({
   selector: 'app-list-trains',
@@ -19,7 +21,9 @@ export class ListTrainsComponent implements OnInit {
   trainToUpdate!: Train;
 
   constructor(
-    private trainService: TrainService // Inject the TrainService to fetch data
+    private trainService: TrainService, // Inject the TrainService to fetch data,
+    private _toast: ToastMessageService,
+    private _confimService: ConfirmMessageService
   ) {}
 
   ngOnInit(): void {
@@ -37,5 +41,22 @@ export class ListTrainsComponent implements OnInit {
   showUpdateModalClicked(train: Train) {
     this.showUpdateModal = true;
     this.trainToUpdate = train;
+  }
+
+  handleDeleteTrain(train: Train) {
+    this._confimService
+      .show('Are you sure want to delete train ?', 'Confirm', 'Delete')
+      .subscribe((data) => {
+        if (data) {
+          if (train.id) {
+            this.trainService.deleteTrain(train.id).subscribe((response) => {
+              this._toast.success('train deleted');
+              this.trains = this.trains.filter(
+                (trainL) => trainL.id != train.id
+              );
+            });
+          }
+        }
+      });
   }
 }

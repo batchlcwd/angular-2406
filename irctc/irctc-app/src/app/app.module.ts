@@ -12,8 +12,15 @@ import { HeaderComponent } from './components/header/header.component';
 
 import { HomePageComponent } from './pages/home-page/home-page.component';
 import { Badge } from 'primeng/badge';
-import { provideHttpClient } from '@angular/common/http';
+import {
+  HTTP_INTERCEPTORS,
+  provideHttpClient,
+  withInterceptorsFromDi,
+} from '@angular/common/http';
 import { ConfirmationService, MessageService } from 'primeng/api';
+import { ErrorInterceptor } from './interceptors/error-interceptor';
+import { LoginComponent } from './pages/login/login.component';
+import { JwtInterceptor } from './interceptors/jwt.interceptor';
 
 @NgModule({
   declarations: [
@@ -21,21 +28,32 @@ import { ConfirmationService, MessageService } from 'primeng/api';
     FooterComponent,
     HeaderComponent,
     HomePageComponent,
+    LoginComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, ShareUiModule, Badge],
   providers: [
-    provideHttpClient(),
+    provideHttpClient(withInterceptorsFromDi()),
     provideAnimationsAsync(),
     providePrimeNG({
       theme: {
         preset: Material,
         options: {
-          darkModeSelector: '.my-app-dark',
+          darkModeSelector: '.app-dark',
         },
       },
     }),
     ConfirmationService,
     MessageService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: ErrorInterceptor,
+      multi: true,
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: JwtInterceptor,
+      multi: true,
+    },
   ],
   bootstrap: [AppComponent],
 })

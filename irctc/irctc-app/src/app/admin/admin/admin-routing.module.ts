@@ -8,6 +8,8 @@ import { ListStationsComponent } from '../pages/list-stations/list-stations.comp
 import { AddStationComponent } from '../pages/add-station/add-station.component';
 import { ListRoutesComponent } from '../pages/list-routes/list-routes.component';
 import { AddRouteComponent } from '../pages/add-route/add-route.component';
+import { AddScheduleComponent } from '../pages/add-schedule/add-schedule.component';
+import { ListScheduleComponent } from '../pages/list-schedule/list-schedule.component';
 
 const routes: Routes = [
   {
@@ -48,6 +50,16 @@ const routes: Routes = [
         path: 'add-route',
         component: AddRouteComponent,
         title: 'Add Train Route',
+      },
+      {
+        path: 'add-schedule',
+        component: AddScheduleComponent,
+        title: 'Add Train Schedule',
+      },
+      {
+        path: 'schedules',
+        component: ListScheduleComponent,
+        title: 'List Train Schedules',
       },
     ],
   },

@@ -8,5 +8,5 @@ body,
 }
 @import "tailwindcss";
 @plugin "tailwindcss-primeui";
-@custom-variant dark (&:where(.my-app-dark, .my-app-dark *));
+@custom-variant dark (&:where(.app-dark, .app-dark *));
 @import "primeicons/primeicons.css";

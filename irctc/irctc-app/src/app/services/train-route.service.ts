@@ -30,4 +30,10 @@ export class TrainRouteService {
       `${environment.apiUrl}/admin/train-routes/train/${trainId}`
     );
   }
+
+  deleteRoute(routeId: number) {
+    return this._http.delete(
+      `${environment.apiUrl}/admin/train-routes/${routeId}`
+    );
+  }
 }

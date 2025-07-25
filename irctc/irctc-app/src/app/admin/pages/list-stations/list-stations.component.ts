@@ -48,14 +48,8 @@ export class ListStationsComponent {
     });
   }
   onDelete(station: Station) {
-    this.confirmMsgService.show(
-      'Are you sure you want to delete service?',
-      'Confirm',
-      'Delete'
-    );
     this.confirmMsgService
-      .onConfirm()
-      .pipe(take(1))
+      .show('Are you sure you want to delete service?', 'Confirm', 'Delete')
       .subscribe((value) => {
         if (value) {
           if (station.id) {

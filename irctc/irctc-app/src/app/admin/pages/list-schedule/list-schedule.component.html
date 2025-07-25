@@ -1,0 +1,101 @@
+<p-card header="Train Schedules" class="shadow-lg rounded-lg p-4">
+  <!-- Header Actions -->
+  <div class="flex justify-between items-center mb-4">
+    <h2 class="text-xl font-semibold text-gray-700">
+      🕰️ Manage Train Schedules
+    </h2>
+    <custom-button
+      [type]="'secondary'"
+      [buttonText]="'Add New Schedule'"
+      [routerLink]="'/admin/add-schedule'"
+    ></custom-button>
+  </div>
+
+  <div class="flex justify-center my-6">
+    <p-select
+      [options]="trains"
+      optionLabel="name"
+      [lazy]="true"
+      (onChange)="handleChange()"
+      [(ngModel)]="selectedTrain"
+      class="w-full md:w-2/3 lg:w-1/2"
+      placeholder="Select a Train"
+    />
+  </div>
+
+  <!-- Train Schedules Table -->
+  <div *ngIf="schedules && schedules.length > 0" class="mt-6">
+    <h3 class="text-lg font-medium text-gray-600 mb-2 px-1">Train Schedules</h3>
+
+    <p-table
+      size="small"
+      [value]="schedules"
+      [tableStyle]="{ 'min-width': '50rem' }"
+      [responsiveLayout]="'scroll'"
+      class="p-datatable-sm p-datatable-striped"
+    >
+      <!-- Header -->
+      <ng-template pTemplate="header">
+        <tr>
+          <th>Train</th>
+          <th>Run Date</th>
+          <th>Available Seats</th>
+          <th>Actions</th>
+        </tr>
+      </ng-template>
+
+      <!-- Row Body -->
+      <ng-template pTemplate="body" let-schedule>
+        <tr>
+          <td>{{ schedule.trainId }} [{{ selectedTrain.name }}]</td>
+          <td>{{ _util.formatDateOnly(schedule.runDate) }}</td>
+          <td>{{ schedule.availableSeats }}</td>
+          <td>
+            <p-button
+              icon="pi pi-trash"
+              severity="danger"
+              rounded
+              size="small"
+              (click)="handleDelete(schedule)"
+              pTooltip="Delete Schedule"
+              tooltip="Delete Schedule"
+              tooltipPosition="top"
+            ></p-button>
+
+            <p-button
+              icon="pi pi-eye"
+              severity="contrast"
+              rounded
+              class="ml-2"
+              size="small"
+              pTooltip="View Routes"
+              tooltip="Delete Schedule"
+              tooltipPosition="top"
+            ></p-button>
+          </td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </div>
+
+  <!-- Info / Empty State Messages -->
+  <div class="mt-6 text-center">
+    <p-message
+      *ngIf="schedules && schedules.length === 0"
+      severity="error"
+      variant="outlined"
+      class="w-full md:w-1/2 mx-auto"
+    >
+      No Train Schedules available.
+    </p-message>
+
+    <p-message
+      *ngIf="!schedules"
+      severity="info"
+      variant="outlined"
+      class="w-full md:w-1/2 mx-auto"
+    >
+      Please add or fetch train schedules.
+    </p-message>
+  </div>
+</p-card>

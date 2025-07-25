@@ -1,45 +1,57 @@
-<div class="min-h-screen p-6">
+<div
+  class="min-h-screen p-6 bg-gray-50 dark:bg-gray-900 transition-colors duration-300"
+>
   <!-- Header -->
-  <h1 class="text-3xl font-bold text-gray-800 mb-6">
+  <h1 class="text-3xl font-bold text-gray-800 dark:text-gray-100 mb-6">
     Welcome, {{ adminName }}
   </h1>
 
   <!-- Summary Cards -->
   <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-10">
-    <div class="bg-white p-5 rounded-xl shadow text-center">
-      <h2 class="text-lg font-semibold text-gray-700">Total Trains</h2>
-      <p class="text-3xl font-bold text-blue-600">
+    <div class="bg-white dark:bg-gray-800 p-5 rounded-xl shadow text-center">
+      <h2 class="text-lg font-semibold text-gray-700 dark:text-gray-300">
+        Total Trains
+      </h2>
+      <p class="text-3xl font-bold text-blue-600 dark:text-blue-400">
         {{ trainSummary.totalTrains }}
       </p>
     </div>
-    <div class="bg-white p-5 rounded-xl shadow text-center">
-      <h2 class="text-lg font-semibold text-gray-700">Active Trains</h2>
-      <p class="text-3xl font-bold text-green-600">
+    <div class="bg-white dark:bg-gray-800 p-5 rounded-xl shadow text-center">
+      <h2 class="text-lg font-semibold text-gray-700 dark:text-gray-300">
+        Active Trains
+      </h2>
+      <p class="text-3xl font-bold text-green-600 dark:text-green-400">
         {{ trainSummary.activeTrains }}
       </p>
     </div>
-    <div class="bg-white p-5 rounded-xl shadow text-center">
-      <h2 class="text-lg font-semibold text-gray-700">Bookings Today</h2>
-      <p class="text-3xl font-bold text-purple-600">
+    <div class="bg-white dark:bg-gray-800 p-5 rounded-xl shadow text-center">
+      <h2 class="text-lg font-semibold text-gray-700 dark:text-gray-300">
+        Bookings Today
+      </h2>
+      <p class="text-3xl font-bold text-purple-600 dark:text-purple-400">
         {{ trainSummary.bookingsToday }}
       </p>
     </div>
-    <div class="bg-white p-5 rounded-xl shadow text-center">
-      <h2 class="text-lg font-semibold text-gray-700">Pending Requests</h2>
-      <p class="text-3xl font-bold text-red-500">
+    <div class="bg-white dark:bg-gray-800 p-5 rounded-xl shadow text-center">
+      <h2 class="text-lg font-semibold text-gray-700 dark:text-gray-300">
+        Pending Requests
+      </h2>
+      <p class="text-3xl font-bold text-red-500 dark:text-red-400">
         {{ trainSummary.pendingRequests }}
       </p>
     </div>
   </div>
 
   <!-- Recent Train Activity -->
-  <div class="bg-white rounded-xl shadow p-6">
-    <h2 class="text-xl font-semibold mb-4 text-gray-800">
+  <div class="bg-white dark:bg-gray-800 rounded-xl shadow p-6">
+    <h2 class="text-xl font-semibold mb-4 text-gray-800 dark:text-gray-100">
       Recent Train Updates
     </h2>
     <table class="w-full text-left border-collapse">
       <thead>
-        <tr class="border-b border-gray-200 text-gray-600">
+        <tr
+          class="border-b border-gray-200 dark:border-gray-700 text-gray-600 dark:text-gray-300"
+        >
           <th class="py-2">Train ID</th>
           <th class="py-2">Train Name</th>
           <th class="py-2">Status</th>
@@ -49,23 +61,30 @@
       <tbody>
         <tr
           *ngFor="let train of recentActivities"
-          class="border-b hover:bg-gray-50"
+          class="border-b border-gray-100 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
         >
-          <td class="py-2">{{ train.id }}</td>
-          <td class="py-2">{{ train.name }}</td>
+          <td class="py-2 text-gray-800 dark:text-gray-200">{{ train.id }}</td>
+          <td class="py-2 text-gray-800 dark:text-gray-200">
+            {{ train.name }}
+          </td>
           <td class="py-2">
             <span
               class="px-2 py-1 rounded-full text-xs font-medium"
               [ngClass]="{
-                'bg-green-100 text-green-800': train.status === 'On Time',
-                'bg-yellow-100 text-yellow-800': train.status === 'Delayed',
-                'bg-red-100 text-red-800': train.status === 'Cancelled'
+                'bg-green-100 text-green-800 dark:bg-green-800/30 dark:text-green-300':
+                  train.status === 'On Time',
+                'bg-yellow-100 text-yellow-800 dark:bg-yellow-800/30 dark:text-yellow-300':
+                  train.status === 'Delayed',
+                'bg-red-100 text-red-800 dark:bg-red-800/30 dark:text-red-300':
+                  train.status === 'Cancelled'
               }"
             >
               {{ train.status }}
             </span>
           </td>
-          <td class="py-2">{{ train.lastUpdated }}</td>
+          <td class="py-2 text-gray-800 dark:text-gray-200">
+            {{ train.lastUpdated }}
+          </td>
         </tr>
       </tbody>
     </table>

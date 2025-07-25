@@ -1,7 +1,7 @@
 <p-card header="Train Routes" class="shadow-lg rounded-lg p-4">
   <!-- Header Actions -->
   <div class="flex justify-between items-center mb-4">
-    <h2 class="text-xl font-semibold text-gray-700">Manage Train Routes</h2>
+    <h2 class="text-xl font-semibold text-gray-700">🚝 Manage Train Routes</h2>
     <custom-button
       [type]="'secondary'"
       [buttonText]="'Add Route'"
@@ -58,8 +58,8 @@
           <td>{{ route.station.name }}</td>
           <td>{{ route.station.code }}</td>
           <td>{{ route.stationOrder }}</td>
-          <td>{{ route.arrivalTime }}</td>
-          <td>{{ route.departureTime }}</td>
+          <td>{{ _util.formatTimeString(route.arrivalTime) }}</td>
+          <td>{{ _util.formatTimeString(route.departureTime) }}</td>
           <td>{{ route.haltMinutes }}</td>
           <td>{{ route.distanceFromSource }}</td>
           <td>
@@ -68,7 +68,7 @@
               severity="danger"
               rounded
               size="small"
-              (click)="handleDelete()"
+              (click)="handleDelete(route)"
               tooltip="Delete Route"
               tooltipPosition="top"
             ></p-button>

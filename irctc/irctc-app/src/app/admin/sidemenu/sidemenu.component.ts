@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { MenuItem, PrimeIcons } from 'primeng/api';
 import { AdminSidebarServiceService } from '../../services/admin-sidebar-service.service';
+import { AuthService } from '../../services/auth.service';
+import { ToastMessageService } from '../../services/toast-message.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-sidemenu',
@@ -11,23 +14,42 @@ import { AdminSidebarServiceService } from '../../services/admin-sidebar-service
 export class SidemenuComponent implements OnInit {
   items: MenuItem[] = [];
   items1: MenuItem[] = [];
-  constructor(public adminSidebarService: AdminSidebarServiceService) {}
+  constructor(
+    public adminSidebarService: AdminSidebarServiceService,
+    private _auth: AuthService,
+    private _toast: ToastMessageService,
+    private _router: Router
+  ) {}
   ngOnInit(): void {
     this.items1 = [
       {
         label: 'Settings',
         icon: PrimeIcons.COG,
         routerLink: '/settings',
+        expanded: true,
         items: [
+          {
+            label: 'Theme',
+            icon: PrimeIcons.SUN,
+            command: (event) => {
+              this.toogleTheme(event);
+            },
+            routerLink: '#',
+          },
+
           {
             label: 'Profile',
             icon: PrimeIcons.USER,
             routerLink: '/profile',
           },
+
           {
             label: 'Logout',
             icon: PrimeIcons.SIGN_OUT,
-            routerLink: '/',
+            command: () => {
+              this.handleLogout();
+            },
+            routerLink: '#',
           },
         ],
       },
@@ -67,7 +89,7 @@ export class SidemenuComponent implements OnInit {
           {
             label: 'Schedules',
             icon: PrimeIcons.CLOCK,
-            routerLink: '/schedule',
+            routerLink: '/admin/schedules',
           },
           {
             label: 'Coaches & Seats',
@@ -92,5 +114,22 @@ export class SidemenuComponent implements OnInit {
         ],
       },
     ];
+  }
+  handleLogout() {
+    this._auth.logout();
+    this._toast.success('Logged out');
+    this._router.navigate(['/login']);
+  }
+
+  toogleTheme(event: any) {
+    const item = event.item;
+
+    const html = document.documentElement;
+    const isDark = html.classList.toggle('app-dark');
+
+    item.icon = isDark ? PrimeIcons.SUN : PrimeIcons.MOON;
+    item.label = isDark ? 'Light' : 'Dark';
+
+    localStorage.setItem('theme', isDark ? 'dark' : 'light');
   }
 }

@@ -4,6 +4,8 @@ import { TrainService } from '../../../services/train.service';
 import { TrainRouteService } from '../../../services/train-route.service';
 import { TrainRoute } from '../../../models/trainroute';
 import { ConfirmMessageService } from '../../../services/confirm-message.service';
+import { ToastMessageService } from '../../../services/toast-message.service';
+import { UtilService } from '../../../services/util.service';
 
 @Component({
   selector: 'app-list-routes',
@@ -19,7 +21,9 @@ export class ListRoutesComponent {
   constructor(
     private _train: TrainService,
     private _trainRoute: TrainRouteService,
-    private _confrm: ConfirmMessageService
+    private _confrm: ConfirmMessageService,
+    private _toast: ToastMessageService,
+    public _util: UtilService
   ) {
     this._train.getTrains().subscribe((response) => (this.trains = response));
   }
@@ -43,7 +47,20 @@ export class ListRoutesComponent {
     console.log(event.target);
   }
 
-  handleDelete() {
-    this._confrm.show('Are you sure want to delete Route ?');
+  handleDelete(route: TrainRoute) {
+    this._confrm
+      .show('Are you sure want to delete Route ?', 'Confirm', 'Delete')
+      .subscribe((data) => {
+        if (data) {
+          if (route.id) {
+            this._trainRoute.deleteRoute(route.id).subscribe((response) => {
+              this._toast.success('Route deleted');
+              this.trainRoute = this.trainRoute.filter(
+                (tr) => tr.id != route.id
+              );
+            });
+          }
+        }
+      });
   }
 }
