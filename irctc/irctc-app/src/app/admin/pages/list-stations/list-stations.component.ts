@@ -14,6 +14,8 @@ import { ToastMessageService } from '../../../services/toast-message.service';
 export class ListStationsComponent {
   //non-null assertion operator
   stationResponse!: StationsResponse<Station>;
+  stationUpdateFlag = false;
+  selectedStation!: Station;
 
   constructor(
     private stationService: StationService,
@@ -67,5 +69,10 @@ export class ListStationsComponent {
           console.log('reject');
         }
       });
+  }
+  handleUpdate(_t39: any) {
+    this.stationUpdateFlag = true;
+    this.selectedStation = _t39;
+    console.log(this.stationUpdateFlag);
   }
 }

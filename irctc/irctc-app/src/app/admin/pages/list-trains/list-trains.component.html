@@ -107,41 +107,60 @@
 </div>
 
 <!-- Edit Train Modal -->
-<div class="card flex justify-center" *ngIf="trainToUpdate">
-  <p-dialog
-    [header]="`✏️ Edit Train: ${trainToUpdate.number}`"
-    [modal]="true"
-    [(visible)]="showUpdateModal"
-    [style]="{ width: '30rem' }"
-    [breakpoints]="{ '768px': '90vw' }"
-  >
-    <span class="p-text-secondary block mb-6">Update train details below.</span>
-
-    <div class="grid grid-cols-1 gap-4">
-      <div class="flex items-center gap-3">
-        <label for="username" class="font-medium w-24 text-gray-700"
-          >Name</label
-        >
-        <input pInputText id="username" class="flex-1" autocomplete="off" />
-      </div>
-      <div class="flex items-center gap-3">
-        <label for="email" class="font-medium w-24 text-gray-700">Email</label>
-        <input pInputText id="email" class="flex-1" autocomplete="off" />
-      </div>
+<custom-dialog
+  [visible]="showUpdateModal"
+  (visibleChange)="showUpdateModal = $event"
+  [header]="'Update Train: ' + trainToUpdate?.name"
+  [width]="'30%'"
+>
+  <form action="" *ngIf="trainToUpdate">
+    <!-- train name field -->
+    <div>
+      <label for="trainName" class="block text-sm font-medium text-gray-700">
+        Train Name
+      </label>
+      <input
+        id="trainName"
+        type="text"
+        class="w-full mt-2"
+        [(ngModel)]="trainToUpdate.name"
+        name="trainName"
+        pInputText
+        required
+      />
     </div>
 
-    <div class="flex justify-end gap-2 mt-6">
-      <p-button
-        label="Cancel"
-        severity="secondary"
-        icon="pi pi-times"
-        (click)="showUpdateModal = false"
+    <!-- train number field -->
+    <div class="mt-3">
+      <label for="trainNumber" class="block text-sm font-medium text-gray-700">
+        Train Number
+      </label>
+      <input
+        id="trainNumber"
+        type="text"
+        class="w-full mt-2"
+        [(ngModel)]="trainToUpdate.number"
+        name="trainNumber"
+        pInputText
+        required
       />
+    </div>
+
+    <div class="mt-3 flex justify-end">
       <p-button
-        label="Save"
+        label="Update Train"
+        class="mt-4"
+        type="success"
         icon="pi pi-check"
+      ></p-button>
+
+      <p-button
+        label="Close"
+        class="mt-4 ml-2"
+        severity="danger"
+        icon="pi pi-arrow-circle-left"
         (click)="showUpdateModal = false"
-      />
+      ></p-button>
     </div>
-  </p-dialog>
-</div>
+  </form>
+</custom-dialog>

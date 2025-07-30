@@ -65,6 +65,7 @@
                 size="small"
                 rounded
                 tooltip="Edit"
+                (click)="handleUpdate(station)"
               />
               <p-button
                 icon="pi pi-trash"
@@ -89,3 +90,73 @@
     </p-table>
   </p-card>
 </div>
+
+<custom-dialog
+  (visibleChange)="stationUpdateFlag = $event"
+  [visible]="stationUpdateFlag"
+  [width]="'20vw'"
+  [header]="'Update Station Details : ' + selectedStation?.name"
+>
+  <div class="form_container" *ngIf="selectedStation">
+    <!-- station code -->
+    <div class="w-full">
+      <label for="stationCode">Station Code</label>
+      <input
+        [id]="'stationCode'"
+        type="text"
+        class="w-full"
+        name=""
+        [(ngModel)]="selectedStation.code"
+        placeholder="Enter New Station Code"
+        pInputText
+      />
+    </div>
+
+    <!-- station name -->
+    <div class="w-full mt-4">
+      <label for="stationName">Station Name</label>
+      <input
+        [id]="'stationName'"
+        type="text"
+        class="w-full"
+        name=""
+        pInputText
+        [(ngModel)]="selectedStation.name"
+        placeholder="Enter New Station Name"
+      />
+    </div>
+
+    <!-- station city -->
+    <div class="w-full mt-4">
+      <label for="stationCity">Station City</label>
+      <input
+        [id]="'stationCity'"
+        type="text"
+        class="w-full"
+        name=""
+        pInputText
+        [(ngModel)]="selectedStation.city"
+        placeholder="Enter New Station City"
+      />
+    </div>
+
+    <!-- station State -->
+    <div class="w-full mt-4">
+      <label for="stationState">Station State</label>
+      <input
+        [id]="'stationState'"
+        type="text"
+        class="w-full"
+        name=""
+        pInputText
+        [(ngModel)]="selectedStation.state"
+        placeholder="Enter New Station State"
+      />
+    </div>
+
+    <div class="flex justify-end mt-6">
+      <p-button label="Update Station"></p-button>
+      <p-button  class="ml-2" severity="danger" label="Cancel" (click)="stationUpdateFlag = false"></p-button>
+    </div>
+  </div>
+</custom-dialog>

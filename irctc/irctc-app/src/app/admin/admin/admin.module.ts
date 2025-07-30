@@ -20,6 +20,8 @@ import { ListScheduleComponent } from '../pages/list-schedule/list-schedule.comp
 import { AddCoachComponent } from '../pages/add-coach/add-coach.component';
 import { ListCoachComponent } from '../pages/list-coach/list-coach.component';
 import { ListBookingsComponent } from '../pages/list-bookings/list-bookings.component';
+import { CustomDialogComponent } from "../../components/custom-dialog.component";
+import { DynamicFormComponent } from "../../components/dynamic-form.component";
 @NgModule({
   declarations: [
     AdminComponent,
@@ -44,6 +46,8 @@ import { ListBookingsComponent } from '../pages/list-bookings/list-bookings.comp
     ReactiveFormsModule,
     CustomButton,
     Badge,
-  ],
+    CustomDialogComponent,
+    DynamicFormComponent
+],
 })
 export class AdminModule {}
