@@ -46,12 +46,12 @@ import { JwtInterceptor } from './interceptors/jwt.interceptor';
     MessageService,
     {
       provide: HTTP_INTERCEPTORS,
-      useClass: ErrorInterceptor,
+      useClass: JwtInterceptor,
       multi: true,
     },
     {
       provide: HTTP_INTERCEPTORS,
-      useClass: JwtInterceptor,
+      useClass: ErrorInterceptor,
       multi: true,
     },
   ],

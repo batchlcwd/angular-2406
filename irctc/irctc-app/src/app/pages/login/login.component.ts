@@ -35,6 +35,7 @@ export class LoginComponent {
         console.log(response);
         this._toast.success('Login Successfully ');
         this._auth.login(response.token);
+        this._auth.saveRefreshToken(response.refreshToken);
         this._router.navigate(['/admin/home']);
       });
   }
