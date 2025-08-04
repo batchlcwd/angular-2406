@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { EventEmitter, Injectable } from '@angular/core';
 import { ConfirmationService } from 'primeng/api';
 import { Subject } from 'rxjs';
 
@@ -7,8 +7,6 @@ import { Subject } from 'rxjs';
 })
 export class ConfirmMessageService {
   constructor(private ngConfirmation: ConfirmationService) {}
-
-  
 
   show(
     message: string,
