@@ -1,1 +1,17 @@
-<p>footer works!</p>
+<div class="p-32 flex gap-6 flex-col items-center justify-center text-3xl">
+  <p>footer works!</p>
+  <p class="text-5xl font-bold">Counter: {{ counter$ | async }}</p>
+
+  <custom-button [buttonText]="'Increase'" (handClick)="increaseCounter()" />
+  <custom-button
+    [type]="'danger'"
+    [buttonText]="'Decrease'"
+    (handClick)="decreaseCounter()"
+  />
+
+  <custom-button
+    [buttonText]="'Reset'"
+    [type]="'info'"
+    (handClick)="resetCounter()"
+  />
+</div>

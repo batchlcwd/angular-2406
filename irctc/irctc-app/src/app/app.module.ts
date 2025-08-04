@@ -12,6 +12,7 @@ import { HeaderComponent } from './components/header/header.component';
 
 import { HomePageComponent } from './pages/home-page/home-page.component';
 import { Badge } from 'primeng/badge';
+import { counterReducer } from './store/counter.reducer';
 import {
   HTTP_INTERCEPTORS,
   provideHttpClient,
@@ -21,6 +22,7 @@ import { ConfirmationService, MessageService } from 'primeng/api';
 import { ErrorInterceptor } from './interceptors/error-interceptor';
 import { LoginComponent } from './pages/login/login.component';
 import { JwtInterceptor } from './interceptors/jwt.interceptor';
+import { StoreModule } from '@ngrx/store';
 
 @NgModule({
   declarations: [
@@ -30,7 +32,15 @@ import { JwtInterceptor } from './interceptors/jwt.interceptor';
     HomePageComponent,
     LoginComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, ShareUiModule, Badge],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    ShareUiModule,
+    Badge,
+    StoreModule.forRoot({
+      counter: counterReducer,
+    }),
+  ],
   providers: [
     provideHttpClient(withInterceptorsFromDi()),
     provideAnimationsAsync(),
