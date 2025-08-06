@@ -2,13 +2,11 @@
   header="Add Train Schedule"
   class="shadow-lg rounded-xl border border-gray-200 dark:border-gray-700"
 >
-  <div
-    class="max-w-3xl mx-auto px-8 py-10 bg-white dark:bg-gray-900 rounded-lg"
-  >
+  <div class="max-w-3xl mx-auto px-8 py-10 rounded-lg">
     <h2
-      class="text-xl font-semibold text-gray-700 mb-8 border-b pb-3 flex items-center gap-2"
+      class="text-xl font-semibold mb-8 border-b pb-3 flex items-center gap-2"
     >
-      <i class="pi pi-calendar text-blue-500"></i>
+      <i class="pi pi-calendar"></i>
       Train Schedule Form
     </h2>
 
@@ -16,8 +14,8 @@
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
         <!-- Train Dropdown -->
         <div>
-          <label class="block text-sm font-medium text-gray-600 mb-1">
-            <i class="pi pi-train text-blue-500 mr-1"></i> Train
+          <label class="block text-sm font-medium mb-1">
+            <i class="pi pi-train mr-1">🚆</i> Train
           </label>
           <p-select
             formControlName="trainId"
@@ -37,8 +35,8 @@
 
         <!-- Run Date (as text input) -->
         <div>
-          <label class="block text-sm font-medium text-gray-600 mb-1">
-            <i class="pi pi-clock text-blue-500 mr-1"></i> Run Date & Time
+          <label class="block text-sm font-medium mb-1">
+            <i class="pi pi-clock mr-1"></i> Run Date & Time
           </label>
           <p-date-picker
             pInputText
@@ -56,8 +54,8 @@
 
         <!-- Available Seats -->
         <div>
-          <label class="block text-sm font-medium text-gray-600 mb-1">
-            <i class="pi pi-users text-blue-500 mr-1"></i> Available Seats
+          <label class="block text-sm font-medium mb-1">
+            <i class="pi pi-users mr-1"></i> Available Seats
           </label>
           <input
             type="number"

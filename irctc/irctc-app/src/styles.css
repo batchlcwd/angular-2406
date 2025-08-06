@@ -10,3 +10,9 @@ body,
 @plugin "tailwindcss-primeui";
 @custom-variant dark (&:where(.app-dark, .app-dark *));
 @import "primeicons/primeicons.css";
+.p-panelmenu-item-link-active {
+  @apply bg-slate-200 rounded text-blue-600 dark:text-slate-50 dark:bg-gray-800;
+}
+.p-panelmenu {
+  @apply w-full border-none bg-transparent dark:bg-transparent;
+}

@@ -21,6 +21,8 @@ export class SidemenuComponent implements OnInit {
     private _router: Router
   ) {}
   ngOnInit(): void {
+    const currentUrl = this._router.url;
+
     this.items1 = [
       {
         label: 'Settings',
@@ -67,9 +69,8 @@ export class SidemenuComponent implements OnInit {
             label: 'Home',
             icon: 'pi pi-fw pi-home',
             routerLink: ['/admin/home'],
-            routerLinkActiveOptions: {
-              exact: true,
-            },
+            routerLinkActiveOptions: { exact: true },
+            styleClass: currentUrl === '/admin/home' ? 'active-link' : '',
           },
           {
             label: 'Trains',

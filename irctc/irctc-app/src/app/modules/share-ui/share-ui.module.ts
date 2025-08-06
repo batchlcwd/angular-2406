@@ -17,6 +17,7 @@ import { SelectModule } from 'primeng/select';
 import { DatePickerModule } from 'primeng/datepicker';
 import { MessageModule } from 'primeng/message';
 import { TooltipModule } from 'primeng/tooltip';
+import { ProgressSpinnerModule } from 'primeng/progressspinner';
 @NgModule({
   declarations: [],
   imports: [
@@ -38,6 +39,7 @@ import { TooltipModule } from 'primeng/tooltip';
     SelectModule,
     DatePickerModule,
     TooltipModule,
+    ProgressSpinnerModule
   ],
   exports: [
     ButtonModule,
@@ -57,6 +59,7 @@ import { TooltipModule } from 'primeng/tooltip';
     DatePickerModule,
     MessageModule,
     TooltipModule,
+    ProgressSpinnerModule
   ], // Exporting CommonModule and ButtonModule for use in other modules
 })
 export class ShareUiModule {}

@@ -6,7 +6,7 @@
   >
     <!-- Header and Add Button -->
     <div class="flex justify-between items-center mb-6">
-      <h2 class="text-lg font-semibold text-gray-700">Manage All Stations</h2>
+      <h2 class="text-lg font-semibold">Manage All Stations</h2>
       <custom-button
         [routerLink]="['/admin/add-station']"
         [type]="'success'"
@@ -92,10 +92,10 @@
 </div>
 
 <custom-dialog
+  *ngIf="selectedStation"
   (visibleChange)="stationUpdateFlag = $event"
   [visible]="stationUpdateFlag"
-  [width]="'20vw'"
-  [header]="'Update Station Details : ' + selectedStation?.name"
+  [header]="'Update Station Details : ' + selectedStation.name"
 >
   <div class="form_container" *ngIf="selectedStation">
     <!-- station code -->
@@ -156,7 +156,12 @@
 
     <div class="flex justify-end mt-6">
       <p-button label="Update Station"></p-button>
-      <p-button  class="ml-2" severity="danger" label="Cancel" (click)="stationUpdateFlag = false"></p-button>
+      <p-button
+        class="ml-2"
+        severity="danger"
+        label="Cancel"
+        (click)="stationUpdateFlag = false"
+      ></p-button>
     </div>
   </div>
 </custom-dialog>

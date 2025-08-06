@@ -3,7 +3,7 @@
   <p-card header="🚆 Trains List" class="rounded-xl shadow-lg">
     <!-- Add Button -->
     <div class="flex justify-between items-center mb-6">
-      <h2 class="text-lg font-semibold text-gray-700">Manage All Trains</h2>
+      <h2 class="text-lg font-semibold">Manage All Trains</h2>
       <custom-button
         type="danger"
         buttonText="Add Train"
@@ -108,10 +108,10 @@
 
 <!-- Edit Train Modal -->
 <custom-dialog
+  *ngIf="trainToUpdate"
   [visible]="showUpdateModal"
   (visibleChange)="showUpdateModal = $event"
-  [header]="'Update Train: ' + trainToUpdate?.name"
-  [width]="'30%'"
+  [header]="'Update Train: ' + trainToUpdate.name"
 >
   <form action="" *ngIf="trainToUpdate">
     <!-- train name field -->

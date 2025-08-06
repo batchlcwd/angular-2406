@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { LoaderService } from './services/loader.service';
 
 @Component({
   selector: 'app-root',
@@ -7,6 +8,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrl: './app.component.css',
 })
 export class AppComponent implements OnInit {
+  constructor(public loaderService: LoaderService) {
+    // Initialize the loader service if needed
+  }
   ngOnInit(): void {
     const currentTheme = localStorage.getItem('theme') || 'dark';
 

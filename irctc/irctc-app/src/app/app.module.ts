@@ -23,6 +23,8 @@ import { ErrorInterceptor } from './interceptors/error-interceptor';
 import { LoginComponent } from './pages/login/login.component';
 import { JwtInterceptor } from './interceptors/jwt.interceptor';
 import { StoreModule } from '@ngrx/store';
+import { MyPreset } from './mypresent';
+import { LoaderInterceptor } from './interceptors/loader.interceptor';
 
 @NgModule({
   declarations: [
@@ -46,7 +48,7 @@ import { StoreModule } from '@ngrx/store';
     provideAnimationsAsync(),
     providePrimeNG({
       theme: {
-        preset: Material,
+        preset: MyPreset,
         options: {
           darkModeSelector: '.app-dark',
         },
@@ -62,6 +64,11 @@ import { StoreModule } from '@ngrx/store';
     {
       provide: HTTP_INTERCEPTORS,
       useClass: ErrorInterceptor,
+      multi: true,
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: LoaderInterceptor,
       multi: true,
     },
   ],

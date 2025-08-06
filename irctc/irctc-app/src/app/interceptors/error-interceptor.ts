@@ -39,7 +39,9 @@ export class ErrorInterceptor implements HttpInterceptor {
         if (error.error) {
           console.log(error);
 
-          if (
+          if (error.error.error.includes('Unauthorized')) {
+            console.log('May be Token expired , trying to refresh');
+          } else if (
             (error.error.message as string).includes(
               'Cannot delete or update a parent row'
             )
