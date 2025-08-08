@@ -4,6 +4,10 @@ import { AdminSidebarServiceService } from '../../services/admin-sidebar-service
 import { AuthService } from '../../services/auth.service';
 import { ToastMessageService } from '../../services/toast-message.service';
 import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
+import { User } from '../../models/user';
+import { Store } from '@ngrx/store';
+import { selectUser } from '../../store/auth.selector';
 
 @Component({
   selector: 'app-sidemenu',
@@ -12,21 +16,28 @@ import { Router } from '@angular/router';
   styleUrl: './sidemenu.component.css',
 })
 export class SidemenuComponent implements OnInit {
+  user$!: User | null;
+
   items: MenuItem[] = [];
   items1: MenuItem[] = [];
   constructor(
     public adminSidebarService: AdminSidebarServiceService,
     private _auth: AuthService,
     private _toast: ToastMessageService,
-    private _router: Router
-  ) {}
+    private _router: Router,
+    private store: Store
+  ) {
+    this.store.select(selectUser).subscribe((user) => {
+      this.user$ = user;
+    });
+  }
   ngOnInit(): void {
     const currentUrl = this._router.url;
 
     this.items1 = [
       {
         label: 'Settings',
-        icon: PrimeIcons.COG,
+        icon: PrimeIcons.USER,
         routerLink: '/settings',
         expanded: true,
         items: [
@@ -40,7 +51,7 @@ export class SidemenuComponent implements OnInit {
           },
 
           {
-            label: 'Profile',
+            label: this.user$?.name || "Profile",
             icon: PrimeIcons.USER,
             routerLink: '/profile',
           },

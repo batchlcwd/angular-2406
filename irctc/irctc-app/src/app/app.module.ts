@@ -25,6 +25,7 @@ import { JwtInterceptor } from './interceptors/jwt.interceptor';
 import { StoreModule } from '@ngrx/store';
 import { MyPreset } from './mypresent';
 import { LoaderInterceptor } from './interceptors/loader.interceptor';
+import { AUTH_FEATURE_KEY, authReducer } from './store/auth.reducer';
 
 @NgModule({
   declarations: [
@@ -41,6 +42,7 @@ import { LoaderInterceptor } from './interceptors/loader.interceptor';
     Badge,
     StoreModule.forRoot({
       counter: counterReducer,
+      [AUTH_FEATURE_KEY]: authReducer,
     }),
   ],
   providers: [

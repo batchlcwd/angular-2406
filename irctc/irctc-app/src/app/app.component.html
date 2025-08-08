@@ -1,9 +1,21 @@
+<!-- <div class="p-10 text-3xl bg-gray-300">
+  <h1>Is Login {{ isLogin$ | async }}</h1>
+  <h1>User : {{ (user$ | async)?.name }}</h1>
+  @if(token$ | async){
+  <h1>Token : {{ token$ | async }}</h1>
+  }@else{
+  <h1>Token is not available</h1>
+  }
+</div> -->
 <p-toast position="top-center" />
 
 <div
   *ngIf="loaderService.loading()"
-  class="fixed inset-0 z-[9999] flex justify-center items-center bg-gray-50/90 dark:bg-gray-950/90"
+  class="fixed inset-0 z-[9999] flex flex-col gap-4 justify-center items-center bg-gray-50/90 dark:bg-gray-950/90"
 >
+  <h1 class="dark:text-gray-300 w-full text-black text-3xl text-center">
+    Loading...
+  </h1>
   <p-progress-spinner
     strokeWidth="8"
     fill="transparent"
