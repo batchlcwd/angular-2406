@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import { User } from '../../../models/user';
+import { Store } from '@ngrx/store';
+import { selectUser } from '../../../store/auth.selector';
 
 @Component({
   selector: 'app-dashboard-home',
@@ -7,6 +10,14 @@ import { Component } from '@angular/core';
   styleUrl: './dashboard-home.component.css',
 })
 export class DashboardHomeComponent {
+  user$!: User | null;
+
+  constructor(private store: Store) {
+    this.store.select(selectUser).subscribe((user) => {
+      this.user$ = user;
+    });
+  }
+
   fields = [
     {
       name: 'Username',

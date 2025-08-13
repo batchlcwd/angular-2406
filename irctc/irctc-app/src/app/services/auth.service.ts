@@ -49,6 +49,10 @@ export class AuthService {
 
   // save refresh token
   saveRefreshToken(refreshToken: string) {
+    if (refreshToken == null) {
+      localStorage.removeItem('refreshToken');
+      return;
+    }
     const encToken = CryptoJS.AES.encrypt(refreshToken, this.secretKey);
     localStorage.setItem('refreshToken', encToken.toString());
   }
@@ -71,6 +75,10 @@ export class AuthService {
   // token store:
 
   login(token: string) {
+    if (token == null) {
+      localStorage.removeItem('token');
+      return;
+    }
     const encToken = CryptoJS.AES.encrypt(token, this.secretKey);
     localStorage.setItem('token', encToken.toString());
   }
