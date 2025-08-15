@@ -4,7 +4,13 @@ import { User } from '../models/user';
 // This action is dispatched when the login is successful
 export const loginSuccessAction = createAction(
   '[Auth] Login Success',
-  props<{ user: User; isLogin: boolean; token: string; refreshToken: string,loading:boolean }>()
+  props<{
+    user: User;
+    isLogin: boolean;
+    token: string;
+    refreshToken: string;
+    loading: boolean;
+  }>()
 );
 
 // This action is dispatched when the login fails
@@ -16,6 +22,11 @@ export const loginFailureAction = createAction(
 export const logoutAction = createAction(
   '[Auth] Logout',
   props<{ isLogin: boolean }>()
+);
+
+export const refreshTokenAction = createAction(
+  '[Auth] Refresh Token',
+  props<{ refreshToken: string; token: string }>()
 );
 // export const registerAction = createAction();
 // export const resetPasswordAction = createAction();

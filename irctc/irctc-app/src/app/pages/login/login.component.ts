@@ -47,10 +47,7 @@ export class LoginComponent {
         );
         this._toast.success('Login Successfully ');
         //local storage
-        this._auth.login(response.token);
-        this._auth.saveRefreshToken(response.refreshToken);
 
-        
         this._router.navigate(['/admin/home']);
       });
   }

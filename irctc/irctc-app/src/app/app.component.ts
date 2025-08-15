@@ -10,6 +10,11 @@ import {
 import { Observable } from 'rxjs';
 import { User } from './models/user';
 import { AuthService } from './services/auth.service';
+import {
+  login,
+  saveRefreshToken,
+  saveUserToLocal,
+} from './utils/local.storage';
 
 @Component({
   selector: 'app-root',
@@ -30,12 +35,16 @@ export class AppComponent implements OnInit {
     // });
     this.store.select(selectToken).subscribe((token) => {
       console.log('App Token ', token);
-      this.auth.login(token!);
+      login(token);
     });
 
     this.store.select(selectRefreshToken).subscribe((refreshToken) => {
       console.log('App Refresh Token ', refreshToken);
-      this.auth.saveRefreshToken(refreshToken!);
+      saveRefreshToken(refreshToken);
+    });
+
+    this.store.select(selectUser).subscribe((user) => {
+      saveUserToLocal(user);
     });
   }
   ngOnInit(): void {

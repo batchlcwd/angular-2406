@@ -8,6 +8,7 @@ import { Observable } from 'rxjs';
 import { User } from '../../models/user';
 import { Store } from '@ngrx/store';
 import { selectUser } from '../../store/auth.selector';
+import { logoutAction } from '../../store/auth.actions';
 
 @Component({
   selector: 'app-sidemenu',
@@ -51,7 +52,7 @@ export class SidemenuComponent implements OnInit {
           },
 
           {
-            label: this.user$?.name || "Profile",
+            label: this.user$?.name || 'Profile',
             icon: PrimeIcons.USER,
             routerLink: '/profile',
           },
@@ -128,7 +129,11 @@ export class SidemenuComponent implements OnInit {
     ];
   }
   handleLogout() {
-    this._auth.logout();
+    this.store.dispatch(
+      logoutAction({
+        isLogin: false,
+      })
+    );
     this._toast.success('Logged out');
     this._router.navigate(['/login']);
   }

@@ -22,12 +22,7 @@ export class ErrorInterceptor implements HttpInterceptor {
     return next.handle(request).pipe(
       // response ane par:
       catchError((error: HttpErrorResponse) => {
-        console.error('API Error:', {
-          url: request.url,
-          status: error.status,
-          message: error.message,
-          error: error.error,
-        });
+        console.error('API Error:', error);
 
         if (error.status == 0) {
           this._toast.error('Your backend is down');
@@ -39,7 +34,7 @@ export class ErrorInterceptor implements HttpInterceptor {
         if (error.error) {
           console.log(error);
 
-          if (error.error.error.includes('Unauthorized')) {
+          if (error.error.message.includes('Unauthorized')) {
             console.log('May be Token expired , trying to refresh');
           } else if (
             (error.error.message as string).includes(
@@ -49,6 +44,8 @@ export class ErrorInterceptor implements HttpInterceptor {
             this._toast.error(
               'Error !! Reference of this alreay exists. First delete that.'
             );
+          } else if (error.error.message.includes('JWT expired')) {
+            console.log('Token expired trying to refresh token...');
           } else {
             this._toast.error(error.error.message);
           }

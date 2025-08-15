@@ -12,9 +12,14 @@ import {
   filter,
   Observable,
   switchMap,
+  take,
   throwError,
 } from 'rxjs';
 import { AuthService } from '../services/auth.service';
+import { getLocalToken } from '../utils/local.storage';
+import { select, Store } from '@ngrx/store';
+import { logoutAction } from '../store/auth.actions';
+import { selectToken } from '../store/auth.selector';
 
 @Injectable()
 export class JwtInterceptor implements HttpInterceptor {
@@ -26,35 +31,35 @@ export class JwtInterceptor implements HttpInterceptor {
     null
   );
 
-  constructor(private _authService: AuthService) {}
+  constructor(private _authService: AuthService, private store: Store) {}
   intercept(
     req: HttpRequest<any>,
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
-    const token = this._authService.getLocalToken();
-    console.log('adding token to header ', token);
-
-    let clonedReq = req;
-
-    if (token) clonedReq = this.addTokenHeader(req, token);
-
-    return next.handle(clonedReq).pipe(
-      catchError((error) => {
-        // error:
-
-        console.log(error);
-        console.log('error in JwtInterceptor');
-
-        if (error instanceof HttpErrorResponse && error.status === 401) {
-          console.log('trying to refresh token');
-          // token ko refresh karn chahie
-          return this.handle401Error(clonedReq, next);
-        }
-
-        return throwError(() => error);
+    return this.store.select(selectToken).pipe(
+      take(1),
+      switchMap((token) => {
+        //read data from ngrx store
+        console.log('adding token to header ', token);
+        let clonedReq = req;
+        if (token) clonedReq = this.addTokenHeader(req, token);
+        return next.handle(clonedReq).pipe(
+          catchError((error) => {
+            // error:
+            console.log(error);
+            console.log('error in JwtInterceptor');
+            if (error instanceof HttpErrorResponse && error.status === 401) {
+              console.log('trying to refresh token');
+              // token ko refresh karn chahie
+              return this.handle401Error(clonedReq, next);
+            }
+            return throwError(() => error);
+          })
+        );
       })
     );
   }
+
   handle401Error(
     clonedReq: HttpRequest<any>,
     next: HttpHandler
@@ -68,7 +73,6 @@ export class JwtInterceptor implements HttpInterceptor {
 
       this.isRefreshing = true;
       this.refreshTokenSubject.next(null);
-
       return this._authService.refreshToken().pipe(
         switchMap((response: any) => {
           console.log('refresh token ' + response);
@@ -78,7 +82,11 @@ export class JwtInterceptor implements HttpInterceptor {
         }),
         catchError((error) => {
           this.isRefreshing = false;
-          this._authService.logout();
+          this.store.dispatch(
+            logoutAction({
+              isLogin: false,
+            })
+          );
           console.error('Refresh token failed', error);
           return throwError(() => error);
         })
