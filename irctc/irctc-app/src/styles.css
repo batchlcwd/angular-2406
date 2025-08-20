@@ -16,3 +16,11 @@ body,
 .p-panelmenu {
   @apply w-full border-none bg-transparent dark:bg-transparent;
 }
+
+a.active {
+  @apply bg-gray-200 dark:bg-gray-900;
+}
+
+.p-panelmenu-panel {
+  box-shadow: none !important;
+}

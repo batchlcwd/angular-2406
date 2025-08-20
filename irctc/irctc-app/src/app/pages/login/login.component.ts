@@ -47,8 +47,13 @@ export class LoginComponent {
         );
         this._toast.success('Login Successfully ');
         //local storage
+        // check user is admin-->
+        console.log(response.user.roles[0].name);
+        if (response.user.roles[0].name == 'ROLE_ADMIN')
+          this._router.navigate(['/admin/home']);
+        else this._router.navigate(['/user']);
 
-        this._router.navigate(['/admin/home']);
+        //user is normal user--> user dashboard
       });
   }
 }

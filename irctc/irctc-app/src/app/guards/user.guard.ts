@@ -16,7 +16,7 @@ import { User } from '../models/user';
 @Injectable({
   providedIn: 'root',
 })
-export class AuthGuard implements CanActivate {
+export class UserGuard implements CanActivate {
   authenticated = false;
 
   constructor(
@@ -44,7 +44,7 @@ export class AuthGuard implements CanActivate {
     ]).pipe(
       take(1),
       map(([isLogin, user]) => {
-        return isLogin && user?.roles[0].name == 'ROLE_ADMIN'
+        return isLogin && user?.roles[0].name == 'ROLE_NORMAL'
           ? true
           : this._router.createUrlTree(['/login']);
       })
