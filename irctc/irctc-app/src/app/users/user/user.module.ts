@@ -8,9 +8,10 @@ import { DashboardComponent } from '../pages/dashboard/dashboard.component';
 import { BookTicketComponent } from '../pages/book-ticket/book-ticket.component';
 import { TicketHistoryComponent } from '../pages/ticket-history/ticket-history.component';
 import { ProfileComponent } from '../pages/profile/profile.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [UserComponent, NavbarComponent, DashboardComponent, BookTicketComponent, TicketHistoryComponent, ProfileComponent],
-  imports: [CommonModule, UserRoutingModule],
+  imports: [CommonModule, UserRoutingModule,FormsModule],
 })
 export class UserModule {}
